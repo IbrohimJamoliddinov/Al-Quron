@@ -6,5 +6,5 @@ static final bgColorToo = Color(0xFFC4C4C4);
 static final bgColorWhite = Color(0xFFEBEBEB);
 static final textColorGrey = Color(0xFF5F5F5F);
 static final dark = Color(0xFF434343);
-static final white = Color(0xFFE5E5E5);
+static final white = Color(0xFFEFEFEF);
 }
