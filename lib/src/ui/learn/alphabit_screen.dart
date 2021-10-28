@@ -119,27 +119,32 @@ class _AlphabitScreenState extends State<AlphabitScreen> {
         elevation: 0,
         leadingWidth: 120,
         backgroundColor: AppTheme.dadada,
-        leading: Container(
-          child: Row(
-            children: [
-              SvgPicture.asset(
-                "assets/icons/chevronLeft.svg",
-              ),
-              SizedBox(
-                width: 8,
-              ),
-              Text(
-                "Back",
-                style: TextStyle(
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 17,
-                  color: Color(0xFF3A3A3C),
+        leading: GestureDetector(
+          onTap: (){
+            Navigator.pop(context);
+          },
+          child: Container(
+            child: Row(
+              children: [
+                SvgPicture.asset(
+                  "assets/icons/chevronLeft.svg",
                 ),
-              ),
-            ],
+                SizedBox(
+                  width: 8,
+                ),
+                Text(
+                  "Back",
+                  style: TextStyle(
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 17,
+                    color: Color(0xFF3A3A3C),
+                  ),
+                ),
+              ],
+            ),
+            padding: EdgeInsets.only(left: 16),
           ),
-          padding: EdgeInsets.only(left: 16),
         ),
         title: Text(
           "Alphabit",
