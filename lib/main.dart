@@ -1,3 +1,4 @@
+import 'package:al_quran/src/ui/home/inside_reciters.dart';
 import 'package:al_quran/src/ui/home/reciters.dart';
 import 'package:al_quran/src/ui/home/setting_time.dart';
 import 'package:al_quran/src/ui/main_screen.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         platform: TargetPlatform.iOS,
       ),
-      home: RecitersScreen(),
+      home: InsideScreen(),
     );
   }
 }
