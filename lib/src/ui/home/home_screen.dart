@@ -5,6 +5,7 @@ import 'package:al_quran/src/widgets/title_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -89,66 +90,47 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Row(
               children: [
                 Container(
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Container(
-                        width: 160,
-                        height: 160,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(80),
-                          gradient: LinearGradient(
-                              begin: Alignment.topRight,
-                              end: Alignment.topCenter,
-                              colors: [
-                                Color(0xFF4D4D4D),
-                                Color.fromRGBO(
-                                    149, 149, 149, 0.5019607843137255),
-                              ]),
-                        ),
-                      ),
-                      Container(
-                        width: 140,
-                        height: 140,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(70),
-                          color: Color(0xFFDBDADA),
-                        ),
-                      ),
-                      Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Peshin",
-                              style: TextStyle(
-                                color: Color(0xFFB6B6B6),
+                  child: CircularPercentIndicator(
+                    radius: 160.0,
+                    lineWidth: 10.0,
+                    percent: 0.68,
+                    animation: true,
+                    animationDuration: 1200,
+                    center: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Peshin",
+                            style: TextStyle(
+                              color: Color(0xFFB6B6B6),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 0.2,
+                            ),
+                          ),
+                          Text(
+                            peshin,
+                            style: TextStyle(
+                              color: Color(0xFF434343),
+                              fontWeight: FontWeight.w700,
+                              fontSize: 38,
+                              letterSpacing: 0.2,
+                            ),
+                          ),
+                          Text(
+                            "-01:52:00",
+                            style: TextStyle(
                                 fontSize: 16,
-                                fontWeight: FontWeight.w600,
+                                fontWeight: FontWeight.w400,
                                 letterSpacing: 0.2,
-                              ),
-                            ),
-                            Text(
-                              peshin,
-                              style: TextStyle(
-                                color: Color(0xFF434343),
-                                fontWeight: FontWeight.w700,
-                                fontSize: 38,
-                                letterSpacing: 0.2,
-                              ),
-                            ),
-                            Text(
-                              "-01:52:00",
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                  letterSpacing: 0.2,
-                                  color: AppTheme.textColorGrey),
-                            ),
-                          ],
-                        ),
+                                color: AppTheme.textColorGrey),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
+                    circularStrokeCap: CircularStrokeCap.butt,
+                    progressColor: Color(0xFF5F5F5F),
                   ),
                   margin: EdgeInsets.only(left: 16),
                 ),
@@ -235,13 +217,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemCount: data.length,
                 itemBuilder: (context, index) {
                   return GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       setState(() {
                         _selektedIndex = index;
                       });
                     },
-                    child: Container(
-                      height: 86,
+                    child: AnimatedContainer(
+                      duration: Duration(milliseconds: 270),
+                      curve: Curves.easeInOut,
+                      height: 80,
                       width: 120,
                       padding: EdgeInsets.symmetric(horizontal: 16),
                       margin: EdgeInsets.only(
@@ -251,7 +235,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        color: _selektedIndex == index ? Color(0xFFE1E1E1): Color(0xFFC4C4C4),
+                        color: _selektedIndex == index
+                            ? Color(0xFFE1E1E1)
+                            : Color(0xFFC4C4C4),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -307,7 +293,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Container(
             height: 148,
             child: ListView.builder(
-              padding: EdgeInsets.symmetric(horizontal: 24),
+                padding: EdgeInsets.symmetric(horizontal: 24),
                 scrollDirection: Axis.horizontal,
                 itemCount: 4,
                 itemBuilder: (context, value) {
@@ -316,32 +302,31 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Stack(
                       children: [
                         Container(
-                          margin: EdgeInsets.only(top: 18),
-                          height: 98,
-                          width: 252,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Color(0xFFCDCDCD),
-                          ),
-                          child: Row(
-                            children: [
-                              Spacer(),
-                              Container(
-                                width: 140,
-                                height: 80,
-                                child: Text(
-                                  dataProfil[value].name,
-                                  maxLines: 2,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 18,
-                                    letterSpacing: 0.2,
+                            margin: EdgeInsets.only(top: 18),
+                            height: 98,
+                            width: 252,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: Color(0xFFCDCDCD),
+                            ),
+                            child: Row(
+                              children: [
+                                Spacer(),
+                                Container(
+                                  width: 140,
+                                  height: 80,
+                                  child: Text(
+                                    dataProfil[value].name,
+                                    maxLines: 2,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 18,
+                                      letterSpacing: 0.2,
+                                    ),
                                   ),
-                                ),
-                              )
-                            ],
-                          )
-                        ),
+                                )
+                              ],
+                            )),
                         ClipRRect(
                           borderRadius: BorderRadius.circular(8.0),
                           child: Image.asset(

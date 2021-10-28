@@ -22,8 +22,6 @@ class _InsideScreenState extends State<InsideScreen> {
     SurahScreen(surahName: "Sura Al-Ma’idah", ayahMor: "Madinah,  200 ayah"),
     SurahScreen(surahName: "Sura Al-Fatihah", ayahMor: "Makkah,  7 ayah"),
     SurahScreen(surahName: "Sura Al-Baqarah", ayahMor: "Madinah,  286 ayah"),
-    SurahScreen(surahName: "Sura An-Nisa", ayahMor: "Madinah,  176 ayah"),
-    SurahScreen(surahName: "Sura Al-Ma’idah", ayahMor: "Madinah,  200 ayah"),
   ];
 
   @override
