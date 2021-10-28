@@ -1,3 +1,4 @@
+import 'package:al_quran/src/ui/home/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -9,10 +10,18 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int selectedIndex = 0;
+  List<Widget> data = [
+    HomeScreen(),
+    Container(),
+    Container(),
+    Container(),
+    Container(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: data[selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         selectedLabelStyle: TextStyle(
           fontSize: 10,
