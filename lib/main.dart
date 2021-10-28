@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         platform: TargetPlatform.iOS,
       ),
-      home: MainScreen(),
+      home: SettingTime(),
     );
   }
 }

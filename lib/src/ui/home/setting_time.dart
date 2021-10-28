@@ -3,6 +3,7 @@ import 'package:al_quran/src/utils/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 
 class SettingTime extends StatefulWidget {
   @override
@@ -10,6 +11,7 @@ class SettingTime extends StatefulWidget {
 }
 
 class _SettingTimeState extends State<SettingTime> {
+  bool status = false;
   List<AthanModel> dataSignal = [
     AthanModel(
       name: "No signal",
@@ -153,9 +155,18 @@ class _SettingTimeState extends State<SettingTime> {
                     Container(
                       width: 52,
                       height: 32,
-                      decoration: BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.circular(16),
+                      child: FlutterSwitch(
+                        width: 52,
+                        height: 32,
+                        toggleSize: 27.0,
+                        value: status,
+                        borderRadius: 16.0,
+                        activeColor: Colors.green,
+                        onToggle: (val) {
+                          setState(() {
+                            status = val;
+                          });
+                        },
                       ),
                     ),
                   ],
