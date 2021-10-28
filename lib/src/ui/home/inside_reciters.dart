@@ -9,7 +9,7 @@ class InsideScreen extends StatefulWidget {
 }
 
 class _InsideScreenState extends State<InsideScreen> {
-  // int _selektedIndex = 0;
+  int _selektedIndex = 0;
 
   List<SurahScreen> dataSurah = [
     SurahScreen(surahName: "Sura Al-Fatihah", ayahMor: "Makkah,  7 ayah"),
@@ -243,31 +243,67 @@ class _InsideScreenState extends State<InsideScreen> {
                       ],
                     ),
                   ),
-                  Container(
-                    height: 32,
-                    margin: EdgeInsets.only(left: 24, right: 24, top: 14),
-                    padding: EdgeInsets.all(2),
-                    decoration: BoxDecoration(
-                      color: Color(0xFFEAEAEA),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: TabBar(
-                      indicator: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: Colors.white,
+                  Stack(
+                    children: [
+                      Container(
+                        height: 32,
+                        margin: EdgeInsets.only(left: 24, right: 24, top: 14),
+                        padding: EdgeInsets.all(2),
+                        decoration: BoxDecoration(
+                          color: Color(0xFFEAEAEA),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: TabBar(
+                          indicator: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: Colors.white,
+                          ),
+                          automaticIndicatorColorAdjustment: false,
+                          unselectedLabelColor: Color(0xFF8F8F8F),
+                          labelColor: Color(0xFF3D3D3D),
+                          onTap: (_index) {
+                            setState(() {
+                              _selektedIndex = _index;
+                            });
+                          },
+                          tabs: [
+                            Text("Surah"),
+                            Text("Juz"),
+                            Text("Bookmark"),
+                          ],
+                        ),
                       ),
-                      automaticIndicatorColorAdjustment: false,
-                      unselectedLabelColor: Color(0xFF8F8F8F),
-                      labelColor: Color(0xFF3D3D3D),
-                      onTap: (_index){
-                        print(_index);
-                      },
-                      tabs: [
-                        Text("Surah"),
-                        Text("Juz"),
-                        Text("Bookmark"),
-                      ],
-                    ),
+                      AnimatedContainer(
+                        duration: Duration(milliseconds: 270),
+                        curve: Curves.easeInOut,
+                        margin: EdgeInsets.only(
+                          left:
+                              24 + (MediaQuery.of(context).size.width - 48) / 3,
+                          top: 22,
+                        ),
+                        height: 16,
+                        width: 1,
+                        color: _selektedIndex == 2
+                            ? Color.fromRGBO(60, 60, 67, 0.36)
+                            : Colors.transparent,
+                      ),
+                      AnimatedContainer(
+                        duration: Duration(milliseconds: 270),
+                        curve: Curves.easeInOut,
+                        margin: EdgeInsets.only(
+                          left: 24 +
+                              (MediaQuery.of(context).size.width - 48) *
+                                  2.0 /
+                                  3,
+                          top: 22,
+                        ),
+                        height: 16,
+                        width: 1,
+                        color: _selektedIndex == 0
+                            ? Color.fromRGBO(60, 60, 67, 0.36)
+                            : Colors.transparent,
+                      ),
+                    ],
                   ),
                   Container(
                     width: double.infinity,
