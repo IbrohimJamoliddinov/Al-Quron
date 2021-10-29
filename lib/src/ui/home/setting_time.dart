@@ -75,7 +75,7 @@ class _SettingTimeState extends State<SettingTime> {
               Text(
                 "Back",
                 style: TextStyle(
-                   color: Color(0xFF3A3A3C),
+                  color: Color(0xFF3A3A3C),
                   fontWeight: FontWeight.w400,
                   fontSize: 16,
                   letterSpacing: -0.41,

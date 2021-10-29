@@ -1,9 +1,4 @@
-import 'package:al_quran/src/ui/home/inside_reciters.dart';
-import 'package:al_quran/src/ui/home/reciters.dart';
-import 'package:al_quran/src/ui/home/setting_time.dart';
-import 'package:al_quran/src/ui/home/time_screen.dart';
 import 'package:al_quran/src/ui/main_screen.dart';
-import 'package:al_quran/src/ui/quran/inside_read.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 

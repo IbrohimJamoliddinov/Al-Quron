@@ -121,11 +121,14 @@ class _TimeScreenState extends State<TimeScreen> {
         actions: [
           GestureDetector(
             onTap: () {
-              setState(() {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return SettingTime();
-                }));
-              });
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return SettingTime();
+                  },
+                ),
+              );
             },
             child: Container(
               margin: EdgeInsets.only(
