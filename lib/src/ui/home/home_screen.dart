@@ -1,5 +1,6 @@
 import 'package:al_quran/src/models/nomoz_vaqti.dart';
 import 'package:al_quran/src/models/qori_title.dart';
+import 'package:al_quran/src/ui/home/time_screen.dart';
 import 'package:al_quran/src/utils/app_theme.dart';
 import 'package:al_quran/src/widgets/title_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -218,8 +219,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
+                      _selektedIndex = index;
                       setState(() {
-                        _selektedIndex = index;
+                        Navigator.push(context, MaterialPageRoute(builder: (context) {
+                          return TimeScreen();
+                        }));
                       });
                     },
                     child: AnimatedContainer(

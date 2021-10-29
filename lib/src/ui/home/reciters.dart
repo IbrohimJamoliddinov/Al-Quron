@@ -166,6 +166,7 @@ class _RecitersScreenState extends State<RecitersScreen> {
           ),
           Expanded(
             child: ListView(
+              padding: EdgeInsets.only(bottom: 24),
               children: [
                 TitleWidget(
                   leftSize: 22,
@@ -178,10 +179,11 @@ class _RecitersScreenState extends State<RecitersScreen> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.all(16),
+                  margin: EdgeInsets.only(top: 16),
                   height: 112,
                   width: MediaQuery.of(context).size.width,
                   child: ListView.builder(
+                    padding: EdgeInsets.only(left: 16),
                     scrollDirection: Axis.horizontal,
                     itemCount: dataListen.length,
                     itemBuilder: (context, index) {
@@ -214,45 +216,52 @@ class _RecitersScreenState extends State<RecitersScreen> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 24),
-                  height: 22,
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        color: Color(0xFFC4C4C4),
-                        width: 0.5,
-                      ),
-                    ),
+                  margin: EdgeInsets.only(
+                    top: 16,
                   ),
+                  height: 22,
                   child: ListView.builder(
+                    padding: EdgeInsets.only(left: 24),
                     itemCount: dataTurlar.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, turlar) {
-                      return GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _selektedIndex = turlar;
-                          });
-                        },
-                        child: Container(
-                          margin: EdgeInsets.only(right: 24),
-                          padding: EdgeInsets.only(bottom: 2),
-                          decoration: BoxDecoration(
+                      return Container(
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              _selektedIndex = turlar;
+                            });
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(right: 24),
+                            padding: EdgeInsets.only(bottom: 2),
+                            decoration: BoxDecoration(
                               border: Border(
-                                  bottom: BorderSide(
-                            color: _selektedIndex == turlar
-                                ? Color(0xFF4B4B4B)
-                                : Colors.transparent,
-                            width: 1,
-                          ))),
-                          child: Text(
-                            dataTurlar[turlar].name,
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                              color: _selektedIndex == turlar
-                                  ? Color(0xFF4B4B4B)
-                                  : Color(0xFFC4C4C4),
+                                bottom: BorderSide(
+                                  color: _selektedIndex == turlar
+                                      ? Color(0xFF4B4B4B)
+                                      : Colors.transparent,
+                                  width: 1,
+                                ),
+                              ),
+                            ),
+                            child: Text(
+                              dataTurlar[turlar].name,
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: _selektedIndex == turlar
+                                    ? Color(0xFF4B4B4B)
+                                    : Color(0xFFC4C4C4),
+                              ),
+                            ),
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                              color: Color(0xFFC4C4C4),
+                              width: 0.5,
                             ),
                           ),
                         ),

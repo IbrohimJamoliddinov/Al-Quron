@@ -1,4 +1,5 @@
 import 'package:al_quran/src/models/athan_model.dart';
+import 'package:al_quran/src/ui/home/time_screen.dart';
 import 'package:al_quran/src/utils/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -54,25 +55,34 @@ class _SettingTimeState extends State<SettingTime> {
         leadingWidth: 125,
         backgroundColor: Color(0xFFDCDCDC),
         elevation: 0,
-        leading: Row(
-          children: [
-            SizedBox(
-              width: 16,
-            ),
-            Icon(
-              Icons.arrow_back_ios,
-              color: Color(0xFF3A3A3C),
-            ),
-            Text(
-              "Back",
-              style: TextStyle(
-                 color: Color(0xFF3A3A3C),
-                fontWeight: FontWeight.w400,
-                fontSize: 16,
-                letterSpacing: -0.41,
+        leading: GestureDetector(
+          onTap: () {
+            setState(() {
+              Navigator.pop(context, MaterialPageRoute(builder: (context) {
+                return TimeScreen();
+              }));
+            });
+          },
+          child: Row(
+            children: [
+              SizedBox(
+                width: 16,
               ),
-            ),
-          ],
+              Icon(
+                Icons.arrow_back_ios,
+                color: Color(0xFF3A3A3C),
+              ),
+              Text(
+                "Back",
+                style: TextStyle(
+                   color: Color(0xFF3A3A3C),
+                  fontWeight: FontWeight.w400,
+                  fontSize: 16,
+                  letterSpacing: -0.41,
+                ),
+              ),
+            ],
+          ),
         ),
         title: Text(
           "Peshin",
