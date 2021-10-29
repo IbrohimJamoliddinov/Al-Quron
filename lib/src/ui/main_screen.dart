@@ -1,6 +1,7 @@
 import 'package:al_quran/src/ui/home/home_screen.dart';
 import 'package:al_quran/src/ui/learn/learn_screen.dart';
 import 'package:al_quran/src/ui/quran/inside_read.dart';
+import 'package:al_quran/src/ui/tasbeh/tasbeh_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -16,7 +17,7 @@ class _MainScreenState extends State<MainScreen> {
     HomeScreen(),
     LearnScreen(),
     InsideRead(),
-    Container(),
+    TasbehScreen(),
     Container(),
   ];
 
