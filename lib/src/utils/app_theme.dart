@@ -10,6 +10,8 @@ static final dadada = Color(0xFFDADADA);
 static final white = Color(0xFFEFEFEF);
 static final black = Color(0xFF000000);
 static final back_white = Color(0xFFE5E5E5);
+static final color_back1 = Color(0xFFECECEC);
+static final color_back2 = Color(0xFFF6F6F6);
 
 static const String fontPoppins = "Poppins";
 
