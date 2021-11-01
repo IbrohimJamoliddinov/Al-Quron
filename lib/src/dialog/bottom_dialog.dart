@@ -5,7 +5,6 @@ import 'package:al_quran/src/widgets/text_switch.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class BottomDialog {
@@ -518,15 +517,15 @@ class BottomDialog {
                                           Container(
                                             width: 52,
                                             height: 32,
-                                            child: FlutterSwitch(
-                                              width: 52,
-                                              height: 32,
-                                              toggleSize: 27.0,
-                                              value: status,
-                                              borderRadius: 16.0,
-                                              activeColor: Colors.green,
-                                              onToggle: (value) {},
-                                            ),
+                                            // child: FlutterSwitch(
+                                            //   width: 52,
+                                            //   height: 32,
+                                            //   toggleSize: 27.0,
+                                            //   value: status,
+                                            //   borderRadius: 16.0,
+                                            //   activeColor: Colors.green,
+                                            //   onToggle: (value) {},
+                                            // ),
                                           ),
                                         ],
                                       ),

@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 
 class MenuWidget extends StatelessWidget {
-  String name;
-  double widthBox;
-  double heightBox;
-  EdgeInsets marginBox;
+  final String name;
+  final double widthBox;
+  final double heightBox;
+  final EdgeInsets marginBox;
 
   MenuWidget({
     required this.name,

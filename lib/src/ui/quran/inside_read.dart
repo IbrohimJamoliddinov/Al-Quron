@@ -1,5 +1,4 @@
 import 'package:al_quran/src/models/surah_model.dart';
-import 'package:al_quran/src/utils/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

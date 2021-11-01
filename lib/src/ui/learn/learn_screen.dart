@@ -4,14 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class LearnScreen extends StatefulWidget {
-  const LearnScreen({Key? key}) : super(key: key);
 
   @override
   _LearnScreenState createState() => _LearnScreenState();
 }
 
 class _LearnScreenState extends State<LearnScreen> {
-  double _currentSliderValue = 20;
 
   @override
   Widget build(BuildContext context) {

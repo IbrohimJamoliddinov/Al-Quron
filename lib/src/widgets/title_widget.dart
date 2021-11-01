@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 
 class TitleWidget extends StatelessWidget {
-  String textLeft;
-  Color colorLeft;
-  double leftSize;
-  String textRight;
-  Color colorRight;
-  double rightSize;
-  EdgeInsets margin;
+  final String textLeft;
+  final Color colorLeft;
+  final double leftSize;
+  final String textRight;
+  final Color colorRight;
+  final double rightSize;
+  final EdgeInsets margin;
 
   TitleWidget({
     this.textLeft ="",
