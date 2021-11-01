@@ -1,6 +1,7 @@
 import 'package:al_quran/src/models/most_listened.dart';
 import 'package:al_quran/src/models/qori_title.dart';
 import 'package:al_quran/src/models/tur_model.dart';
+import 'package:al_quran/src/ui/home/inside_reciters.dart';
 import 'package:al_quran/src/utils/app_theme.dart';
 import 'package:al_quran/src/widgets/title_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -81,25 +82,30 @@ class _RecitersScreenState extends State<RecitersScreen> {
         leadingWidth: 125,
         backgroundColor: Color(0xFFDCDCDC),
         elevation: 0,
-        leading: Row(
-          children: [
-            SizedBox(
-              width: 16,
-            ),
-            Icon(
-              Icons.arrow_back_ios,
-              color: Color(0xFF3A3A3C),
-            ),
-            Text(
-              "Back",
-              style: TextStyle(
-                color: Color(0xFF3A3A3C),
-                fontWeight: FontWeight.w400,
-                fontSize: 16,
-                letterSpacing: -0.41,
+        leading: GestureDetector(
+          onTap: (){
+            Navigator.pop(context);
+          },
+          child: Row(
+            children: [
+              SizedBox(
+                width: 16,
               ),
-            ),
-          ],
+              Icon(
+                Icons.arrow_back_ios,
+                color: Color(0xFF3A3A3C),
+              ),
+              Text(
+                "Back",
+                style: TextStyle(
+                  color: Color(0xFF3A3A3C),
+                  fontWeight: FontWeight.w400,
+                  fontSize: 16,
+                  letterSpacing: -0.41,
+                ),
+              ),
+            ],
+          ),
         ),
         title: Text(
           "Reciters",
@@ -277,121 +283,128 @@ class _RecitersScreenState extends State<RecitersScreen> {
                       padding: EdgeInsets.symmetric(horizontal: 24),
                       itemCount: 4,
                       itemBuilder: (context, value) {
-                        return Container(
-                          margin: EdgeInsets.only(top: 8),
-                          child: Stack(
-                            children: [
-                              Container(
-                                margin: EdgeInsets.only(top: 24),
-                                padding: EdgeInsets.only(top: 8),
-                                height: 108,
-                                width: MediaQuery.of(context).size.width,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  color: Color(0xFFCDCDCD),
-                                ),
-                                child: Row(
-                                  // crossAxisAlignment: CrossAxisAlignment.start,
-                                  // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Spacer(),
-                                    Container(
-                                      width: 210,
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Container(
-                                                child: Text(
-                                                  dataProfil[value].name,
-                                                  maxLines: 2,
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: 18,
-                                                    letterSpacing: 0.2,
-                                                  ),
-                                                ),
-                                                width: 180,
-                                              ),
-                                              Icon(
-                                                Icons.star,
-                                                color: Colors.white,
-                                                size: 24,
-                                              ),
-                                            ],
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                          ),
-                                          Text(
-                                            "114 surah recorded",
-                                            textAlign: TextAlign.right,
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 16,
-                                              letterSpacing: 0.2,
-                                              color: Color(0xFF6F6F6F),
-                                            ),
-                                          ),
-                                          Container(
-                                            width: 110,
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 6, vertical: 4),
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                              color: AppTheme.bgColorToo,
-                                            ),
-                                            child: Row(
+                        return GestureDetector(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context){
+                              return InsideScreen();
+                            }));
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(top: 8),
+                            child: Stack(
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.only(top: 24),
+                                  padding: EdgeInsets.only(top: 8),
+                                  height: 108,
+                                  width: MediaQuery.of(context).size.width,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: Color(0xFFCDCDCD),
+                                  ),
+                                  child: Row(
+                                    // crossAxisAlignment: CrossAxisAlignment.start,
+                                    // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Spacer(),
+                                      Container(
+                                        width: 210,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Row(
                                               children: [
-                                                Text(
-                                                  "Style:",
-                                                  style: TextStyle(
-                                                    color: Color(0xFF6F6F6F),
-                                                    fontSize: 14,
-                                                    letterSpacing: 0.2,
-                                                    fontWeight: FontWeight.w500,
+                                                Container(
+                                                  child: Text(
+                                                    dataProfil[value].name,
+                                                    maxLines: 2,
+                                                    style: TextStyle(
+                                                      fontWeight: FontWeight.w600,
+                                                      fontSize: 18,
+                                                      letterSpacing: 0.2,
+                                                    ),
                                                   ),
+                                                  width: 180,
                                                 ),
-                                                Text(
-                                                  " Yusuf Ali",
-                                                  style: TextStyle(
-                                                    color: Color(0xFF6F6F6F),
-                                                    fontSize: 14,
-                                                    letterSpacing: 0.2,
-                                                    fontWeight: FontWeight.w400,
-                                                  ),
+                                                Icon(
+                                                  Icons.star,
+                                                  color: Colors.white,
+                                                  size: 24,
                                                 ),
                                               ],
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                             ),
-                                          ),
-                                          SizedBox(
-                                            height: 6,
-                                          ),
-                                        ],
+                                            Text(
+                                              "114 surah recorded",
+                                              textAlign: TextAlign.right,
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 16,
+                                                letterSpacing: 0.2,
+                                                color: Color(0xFF6F6F6F),
+                                              ),
+                                            ),
+                                            Container(
+                                              width: 110,
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 6, vertical: 4),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                                color: AppTheme.bgColorToo,
+                                              ),
+                                              child: Row(
+                                                children: [
+                                                  Text(
+                                                    "Style:",
+                                                    style: TextStyle(
+                                                      color: Color(0xFF6F6F6F),
+                                                      fontSize: 14,
+                                                      letterSpacing: 0.2,
+                                                      fontWeight: FontWeight.w500,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    " Yusuf Ali",
+                                                    style: TextStyle(
+                                                      color: Color(0xFF6F6F6F),
+                                                      fontSize: 14,
+                                                      letterSpacing: 0.2,
+                                                      fontWeight: FontWeight.w400,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 6,
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                    SizedBox(
-                                      width: 16,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  child: Image.asset(
-                                    dataProfil[value].image,
+                                      SizedBox(
+                                        width: 16,
+                                      ),
+                                    ],
                                   ),
                                 ),
-                                margin: EdgeInsets.only(
-                                  top: 16,
+                                Container(
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    child: Image.asset(
+                                      dataProfil[value].image,
+                                    ),
+                                  ),
+                                  margin: EdgeInsets.only(
+                                    top: 16,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         );
                       }),

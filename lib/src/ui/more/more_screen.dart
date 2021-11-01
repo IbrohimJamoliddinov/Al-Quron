@@ -31,6 +31,9 @@ class _MoreScreenState extends State<MoreScreen> {
                 ),
                 actions: [
                   GestureDetector(
+                    onTap: () {
+                      BottomDialog.showSettingsDialog(context);
+                    },
                     child: Container(
                       margin: EdgeInsets.only(right: 16),
                       child: Icon(
@@ -39,9 +42,6 @@ class _MoreScreenState extends State<MoreScreen> {
                         color: Colors.black,
                       ),
                     ),
-                    onTap: () {
-                      BottomDialog.showSettingsDialog(context);
-                    },
                   )
                 ],
               ),

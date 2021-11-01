@@ -13,6 +13,7 @@ class SettingTime extends StatefulWidget {
 
 class _SettingTimeState extends State<SettingTime> {
   bool status = false;
+  int _selectedIndex = 2;
   List<AthanModel> dataSignal = [
     AthanModel(
       name: "No signal",
@@ -208,7 +209,6 @@ class _SettingTimeState extends State<SettingTime> {
             ],
           ),
           Container(
-            padding: EdgeInsets.all(16),
             margin: EdgeInsets.only(
               top: 8,
               bottom: 24,
@@ -224,52 +224,67 @@ class _SettingTimeState extends State<SettingTime> {
               shrinkWrap: true,
               itemCount: dataSignal.length,
               itemBuilder: (context, verbl) {
-                return Container(
-                  height: 54,
-                  width: MediaQuery.of(context).size.width,
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            dataSignal[verbl].name,
-                            style: TextStyle(
-                              color: AppTheme.textColorGrey,
-                              fontSize: 16,
-                              letterSpacing: 0.2,
-                              fontWeight: FontWeight.w400,
-                            ),
+                return GestureDetector(
+                  onTap: (){
+                    setState(() {
+                      _selectedIndex = verbl;
+                    });
+                  },
+                  child: Container(
+                    height: 54,
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 54,
+                          width: MediaQuery.of(context).size.width,
+                          padding: EdgeInsets.only(left: 16, right: 16),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: _selectedIndex == verbl ? Color(0xFFE1E1E1): Colors.transparent,
                           ),
-                          Spacer(),
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4),
-                              color: Colors.grey,
-                            ),
-                            child: SvgPicture.asset(
-                              dataSignal[verbl].icon,
-                            ),
-                          ),
-                        ],
-                      ),
-                      verbl == dataSignal.length - 1
-                          ? Container()
-                          : Expanded(
-                              child: Container(
-                                margin: EdgeInsets.symmetric(vertical: 12),
-                                height: 0,
-                                width: MediaQuery.of(context).size.width,
+                          alignment: Alignment.centerLeft,
+                          child: Row(
+                            children: [
+                              Text(
+                                dataSignal[verbl].name,
+                                style: TextStyle(
+                                  color: AppTheme.textColorGrey,
+                                  fontSize: 16,
+                                  letterSpacing: 0.2,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                              Spacer(),
+                              Container(
                                 decoration: BoxDecoration(
-                                  border: Border(
-                                    top: BorderSide(
-                                      color: Color(0xFFDADADA),
-                                      width: 1,
+                                  borderRadius: BorderRadius.circular(4),
+                                  color: Colors.grey,
+                                ),
+                                child: SvgPicture.asset(
+                                  dataSignal[verbl].icon,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        verbl == dataSignal.length - 1
+                            ? Container()
+                            : Expanded(
+                                child: Container(
+                                  height: 0,
+                                  width: MediaQuery.of(context).size.width,
+                                  decoration: BoxDecoration(
+                                    border: Border(
+                                      top: BorderSide(
+                                        color: Color(0xFFDADADA),
+                                        width: 1,
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                    ],
+                      ],
+                    ),
                   ),
                 );
               },

@@ -1,5 +1,6 @@
 import 'package:al_quran/src/models/nomoz_vaqti.dart';
 import 'package:al_quran/src/models/qori_title.dart';
+import 'package:al_quran/src/ui/home/reciters.dart';
 import 'package:al_quran/src/ui/home/time_screen.dart';
 import 'package:al_quran/src/utils/app_theme.dart';
 import 'package:al_quran/src/widgets/title_widget.dart';
@@ -221,7 +222,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     onTap: () {
                       _selektedIndex = index;
                       setState(() {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
                           return TimeScreen();
                         }));
                       });
@@ -286,14 +288,54 @@ class _HomeScreenState extends State<HomeScreen> {
               borderRadius: BorderRadius.circular(8),
             ),
           ),
-          TitleWidget(
-            textLeft: "Quran reciters",
-            colorLeft: Color(0xFF242424),
-            leftSize: 26,
-            textRight: "view all",
-            colorRight: Color(0xFF0469FF),
-            rightSize: 16,
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              children: [
+                Text(
+                  "Quran reciters",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 26,
+                    color: Color(0xFF242424),
+                    letterSpacing: 0.2,
+                  ),
+                ),
+                Spacer(),
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context){
+                      return RecitersScreen();
+                    }));
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                    decoration: BoxDecoration(
+                      color: Color(0xBFB9B9BB),
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: Text(
+                      "view all",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                        color: Color(0xFF0469FF),
+                        letterSpacing: 0.2,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
+          // TitleWidget(
+          //   textLeft: "Quran reciters",
+          //   colorLeft: Color(0xFF242424),
+          //   leftSize: 26,
+          //   textRight: "view all",
+          //   colorRight: Color(0xFF0469FF),
+          //   rightSize: 16,
+          // ),
           Container(
             height: 148,
             child: ListView.builder(

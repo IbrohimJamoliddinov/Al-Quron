@@ -33,25 +33,30 @@ class _InsideScreenState extends State<InsideScreen> {
           leadingWidth: 125,
           backgroundColor: Color(0xFFDCDCDC),
           elevation: 0,
-          leading: Row(
-            children: [
-              SizedBox(
-                width: 16,
-              ),
-              Icon(
-                Icons.arrow_back_ios,
-                color: Color(0xFF3A3A3C),
-              ),
-              Text(
-                "Back",
-                style: TextStyle(
-                  color: Color(0xFF3A3A3C),
-                  fontWeight: FontWeight.w400,
-                  fontSize: 16,
-                  letterSpacing: -0.41,
+          leading: GestureDetector(
+            onTap: (){
+              Navigator.pop(context);
+            },
+            child: Row(
+              children: [
+                SizedBox(
+                  width: 16,
                 ),
-              ),
-            ],
+                Icon(
+                  Icons.arrow_back_ios,
+                  color: Color(0xFF3A3A3C),
+                ),
+                Text(
+                  "Back",
+                  style: TextStyle(
+                    color: Color(0xFF3A3A3C),
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16,
+                    letterSpacing: -0.41,
+                  ),
+                ),
+              ],
+            ),
           ),
           title: Text(
             "Quran",
