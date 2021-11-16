@@ -80,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
+                CupertinoPageRoute(
                   builder: (context) {
                     return TimeScreen(
                       title: data[_selectedIndex].neme,
@@ -245,7 +245,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     });
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
+                      CupertinoPageRoute(
                         builder: (context) {
                           return TimeScreen(
                             title: data[index].neme,
@@ -336,7 +336,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
+                      CupertinoPageRoute(
                         builder: (context) {
                           return RecitersScreen();
                         },
@@ -374,10 +374,10 @@ class _HomeScreenState extends State<HomeScreen> {
               itemCount: 4,
               itemBuilder: (context, value) {
                 return GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
+                      CupertinoPageRoute(
                         builder: (context) {
                           return RecitersScreen();
                         },

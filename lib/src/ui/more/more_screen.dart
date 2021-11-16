@@ -1,5 +1,6 @@
 import 'package:al_quran/src/dialog/bottom_dialog.dart';
 import 'package:al_quran/src/ui/more/shahada.dart';
+import 'package:al_quran/src/ui/more/youtube_screen.dart';
 import 'package:al_quran/src/widgets/menu_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -64,7 +65,7 @@ class _MoreScreenState extends State<MoreScreen> {
                             onTap: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(
+                                CupertinoPageRoute(
                                   builder: (context) {
                                     return NamesScreen();
                                   },
@@ -90,11 +91,25 @@ class _MoreScreenState extends State<MoreScreen> {
                               bottom: 16,
                             ),
                           ),
-                          MenuWidget(
-                            name: "Live Makkah",
-                            widthBox:
-                                (MediaQuery.of(context).size.width - 66) / 2,
-                            heightBox: 120,
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                CupertinoPageRoute(
+                                  builder: (context) {
+                                    return YoutubeScreen(
+                                      id: "g7ZrwTaroAc",
+                                    );
+                                  },
+                                ),
+                              );
+                            },
+                            child: MenuWidget(
+                              name: "Live Makkah",
+                              widthBox:
+                                  (MediaQuery.of(context).size.width - 66) / 2,
+                              heightBox: 120,
+                            ),
                           ),
                         ],
                       ),
@@ -102,10 +117,14 @@ class _MoreScreenState extends State<MoreScreen> {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return ShahadaScreen();
-                              }));
+                              Navigator.push(
+                                context,
+                                CupertinoPageRoute(
+                                  builder: (context) {
+                                    return ShahadaScreen();
+                                  },
+                                ),
+                              );
                             },
                             child: MenuWidget(
                               name: "Shaxada",
@@ -127,11 +146,25 @@ class _MoreScreenState extends State<MoreScreen> {
                               bottom: 16,
                             ),
                           ),
-                          MenuWidget(
-                            name: "Live Madina",
-                            widthBox:
-                                (MediaQuery.of(context).size.width - 66) / 2,
-                            heightBox: 120,
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                CupertinoPageRoute(
+                                  builder: (context) {
+                                    return YoutubeScreen(
+                                      id: "4GCH7_Gj0ro",
+                                    );
+                                  },
+                                ),
+                              );
+                            },
+                            child: MenuWidget(
+                              name: "Live Madina",
+                              widthBox:
+                                  (MediaQuery.of(context).size.width - 66) / 2,
+                              heightBox: 120,
+                            ),
                           ),
                         ],
                       ),

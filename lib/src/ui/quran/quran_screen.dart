@@ -1,4 +1,5 @@
 import 'package:al_quran/src/models/surah_model.dart';
+import 'package:al_quran/src/ui/more/youtube_screen.dart';
 import 'package:al_quran/src/ui/quran/quran_item_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -205,7 +206,7 @@ class _QuranScreenState extends State<QuranScreen> {
                           onTap: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(
+                              CupertinoPageRoute(
                                 builder: (context) {
                                   return QuranItemScreen(
                                     title: data[index].surahName,

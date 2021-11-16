@@ -288,7 +288,7 @@ class _RecitersScreenState extends State<RecitersScreen> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
+                          CupertinoPageRoute(
                             builder: (context) {
                               return InsideScreen();
                             },

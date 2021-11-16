@@ -3,6 +3,7 @@ import 'package:al_quran/src/models/week_model.dart';
 import 'package:al_quran/src/ui/home/setting_time.dart';
 import 'package:al_quran/src/utils/app_theme.dart';
 import 'package:al_quran/src/widgets/title_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -128,7 +129,7 @@ class _TimeScreenState extends State<TimeScreen> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
+                CupertinoPageRoute(
                   builder: (context) {
                     return SettingTime(
                       title: widget.title,
