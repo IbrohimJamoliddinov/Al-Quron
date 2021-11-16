@@ -9,19 +9,49 @@ class InsideScreen extends StatefulWidget {
 }
 
 class _InsideScreenState extends State<InsideScreen> {
-  int _selektedIndex = 0;
+  int _selectedIndex = 0;
 
-  List<SurahScreen> dataSurah = [
-    SurahScreen(surahName: "Sura Al-Fatihah", ayahMor: "Makkah,  7 ayah"),
-    SurahScreen(surahName: "Sura Al-Baqarah", ayahMor: "Madinah,  286 ayah"),
-    SurahScreen(surahName: "Sura An-Nisa", ayahMor: "Madinah,  176 ayah"),
-    SurahScreen(surahName: "Sura Al-Ma’idah", ayahMor: "Madinah,  200 ayah"),
-    SurahScreen(surahName: "Sura Al-Fatihah", ayahMor: "Makkah,  7 ayah"),
-    SurahScreen(surahName: "Sura Al-Baqarah", ayahMor: "Madinah,  286 ayah"),
-    SurahScreen(surahName: "Sura An-Nisa", ayahMor: "Madinah,  176 ayah"),
-    SurahScreen(surahName: "Sura Al-Ma’idah", ayahMor: "Madinah,  200 ayah"),
-    SurahScreen(surahName: "Sura Al-Fatihah", ayahMor: "Makkah,  7 ayah"),
-    SurahScreen(surahName: "Sura Al-Baqarah", ayahMor: "Madinah,  286 ayah"),
+  List<SurahScreen> data = [
+    SurahScreen(
+      surahName: "Sura Al-Fatihah",
+      ayahMor: "Makkah,  7 ayah",
+    ),
+    SurahScreen(
+      surahName: "Sura Al-Baqarah",
+      ayahMor: "Madinah,  286 ayah",
+    ),
+    SurahScreen(
+      surahName: "Sura An-Nisa",
+      ayahMor: "Madinah,  176 ayah",
+    ),
+    SurahScreen(
+      surahName: "Sura Al-Ma’idah",
+      ayahMor: "Madinah,  200 ayah",
+    ),
+    SurahScreen(
+      surahName: "Sura Al-Fatihah",
+      ayahMor: "Makkah,  7 ayah",
+    ),
+    SurahScreen(
+      surahName: "Sura Al-Baqarah",
+      ayahMor: "Madinah,  286 ayah",
+    ),
+    SurahScreen(
+      surahName: "Sura An-Nisa",
+      ayahMor: "Madinah,  176 ayah",
+    ),
+    SurahScreen(
+      surahName: "Sura Al-Ma’idah",
+      ayahMor: "Madinah,  200 ayah",
+    ),
+    SurahScreen(
+      surahName: "Sura Al-Fatihah",
+      ayahMor: "Makkah,  7 ayah",
+    ),
+    SurahScreen(
+      surahName: "Sura Al-Baqarah",
+      ayahMor: "Madinah,  286 ayah",
+    ),
   ];
 
   @override
@@ -30,32 +60,36 @@ class _InsideScreenState extends State<InsideScreen> {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          leadingWidth: 125,
+          leadingWidth: 98,
           backgroundColor: Color(0xFFDCDCDC),
           elevation: 0,
+          centerTitle: true,
           leading: GestureDetector(
             onTap: () {
               Navigator.pop(context);
             },
-            child: Row(
-              children: [
-                SizedBox(
-                  width: 16,
-                ),
-                Icon(
-                  Icons.arrow_back_ios,
-                  color: Color(0xFF3A3A3C),
-                ),
-                Text(
-                  "Back",
-                  style: TextStyle(
-                    color: Color(0xFF3A3A3C),
-                    fontWeight: FontWeight.w400,
-                    fontSize: 16,
-                    letterSpacing: -0.41,
+            child: Container(
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 16,
                   ),
-                ),
-              ],
+                  SvgPicture.asset(
+                    "assets/icons/arrow_left_bold.svg",
+                    height: 18,
+                  ),
+                  SizedBox(width: 5),
+                  Text(
+                    "Back",
+                    style: TextStyle(
+                      color: Color(0xFF3A3A3C),
+                      fontWeight: FontWeight.w400,
+                      fontSize: 16,
+                      letterSpacing: -0.41,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           title: Text(
@@ -71,12 +105,10 @@ class _InsideScreenState extends State<InsideScreen> {
         body: Column(
           children: [
             Container(
-              width: MediaQuery.of(context).size.width,
               color: Color(0xFFDCDCDC),
-              padding: EdgeInsets.only(left: 24, right: 24, bottom: 10),
+              padding: EdgeInsets.only(left: 24.0, right: 24, bottom: 10),
               child: Container(
                 height: 40,
-                padding: EdgeInsets.symmetric(horizontal: 10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   color: Color(0xFFEBEBEB),
@@ -84,18 +116,15 @@ class _InsideScreenState extends State<InsideScreen> {
                 child: Row(
                   children: [
                     SizedBox(
-                      height: 8,
+                      width: 8,
                     ),
-                    Icon(
-                      Icons.search,
-                      size: 24,
-                      color: Colors.grey,
+                    SvgPicture.asset(
+                      "assets/icons/search.svg",
                     ),
                     SizedBox(
                       width: 8,
                     ),
-                    Container(
-                      width: 120,
+                    Expanded(
                       child: TextField(
                         autofocus: false,
                         decoration: InputDecoration(
@@ -122,8 +151,8 @@ class _InsideScreenState extends State<InsideScreen> {
               child: ListView(
                 children: [
                   Container(
-                    height: 194,
-                    width: MediaQuery.of(context).size.width,
+                    height:
+                        (MediaQuery.of(context).size.width - 48) * 183 / 327,
                     margin: EdgeInsets.only(
                       left: 24,
                       top: 20,
@@ -140,16 +169,20 @@ class _InsideScreenState extends State<InsideScreen> {
                             SizedBox(width: 16),
                             Image.asset(
                               "assets/images/mishary2.png",
+                              height: 112,
+                              width: 82,
+                              fit: BoxFit.cover,
                             ),
                             SizedBox(
                               width: 24,
                             ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Container(
-                                  child: Text(
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Text(
                                     "Mishary Rashid Al Afasy",
                                     maxLines: 2,
                                     style: TextStyle(
@@ -157,92 +190,109 @@ class _InsideScreenState extends State<InsideScreen> {
                                       fontSize: 18,
                                       fontWeight: FontWeight.w600,
                                       letterSpacing: 0.2,
+                                      height: 1.2,
                                     ),
                                   ),
-                                  width: 146,
-                                ),
-                                Text(
-                                  "114 surah recorded",
-                                  style: TextStyle(
-                                    color: Color(0xFF6F6F6F),
-                                    fontSize: 16,
-                                    letterSpacing: 0.2,
-                                    fontWeight: FontWeight.w400,
+                                  SizedBox(height: 4),
+                                  Text(
+                                    "114 surah recorded",
+                                    style: TextStyle(
+                                      color: Color(0xFF6F6F6F),
+                                      fontSize: 16,
+                                      letterSpacing: 0.2,
+                                      fontWeight: FontWeight.w400,
+                                    ),
                                   ),
-                                ),
-                                Container(
-                                  margin: EdgeInsets.only(top: 2),
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 4, horizontal: 6),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: Color(0xFFC2C2C2),
-                                  ),
-                                  child: Row(
+                                  SizedBox(height: 4),
+                                  Row(
                                     children: [
-                                      Text(
-                                        "Style:",
-                                        style: TextStyle(
-                                          color: Color(0xFF6F6F6F),
-                                          fontSize: 14,
-                                          letterSpacing: 0.2,
-                                          fontWeight: FontWeight.w400,
+                                      Container(
+                                        padding: EdgeInsets.symmetric(
+                                          vertical: 4,
+                                          horizontal: 8,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          color: Color(0xFFC2C2C2),
+                                        ),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              "Style:",
+                                              style: TextStyle(
+                                                color: Color(0xFF6F6F6F),
+                                                fontSize: 14,
+                                                letterSpacing: 0.2,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                            Text(
+                                              " Yusuf Ali",
+                                              style: TextStyle(
+                                                color: Color(0xFF6F6F6F),
+                                                fontSize: 14,
+                                                letterSpacing: 0.2,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            )
+                                          ],
                                         ),
                                       ),
-                                      Text(
-                                        " Yusuf Ali",
-                                        style: TextStyle(
-                                          color: Color(0xFF6F6F6F),
-                                          fontSize: 14,
-                                          letterSpacing: 0.2,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      )
+                                      Spacer(),
                                     ],
-                                  ),
-                                )
-                              ],
+                                  )
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              width: 16,
                             ),
                           ],
                         ),
-                        Container(
-                          padding: EdgeInsets.all(12),
-                          child: Stack(
-                            alignment: Alignment.bottomRight,
-                            children: [
-                              Text(
-                                "Born in Kuwait, is a qāri (reciter of the Quran), imam, preacher, and Nasheed artist. He studied in the Islamic University of Madi",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 16,
-                                  letterSpacing: 0.2,
-                                ),
-                              ),
-                              Container(
-                                padding: EdgeInsets.symmetric(horizontal: 4),
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFEAEAEA),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Color(0xFFD9D9D9),
-                                      offset: Offset(-8, 0),
-                                      spreadRadius: 6,
-                                      blurRadius: 10,
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.circular(4),
-                                ),
-                                child: Text(
-                                  "more",
+                        Expanded(
+                          child: Container(
+                            padding: EdgeInsets.all(12),
+                            child: Stack(
+                              children: [
+                                Text(
+                                  "Born in Kuwait, is a qāri (reciter of the Quran), imam, preacher, and Nasheed artist. He studied in the Islamic University of Madina. Born in Kuwait, is a qāri (reciter of the Quran), imam, preacher, and Nasheed artist.",
                                   style: TextStyle(
-                                    color: Colors.blue,
-                                    fontSize: 16,
                                     fontWeight: FontWeight.w400,
+                                    fontSize: 16,
                                     letterSpacing: 0.2,
                                   ),
                                 ),
-                              ),
-                            ],
+                                Align(
+                                  alignment: Alignment.bottomRight,
+                                  child: Container(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 4),
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFFEAEAEA),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Color(0xFFD9D9D9),
+                                          offset: Offset(-8, 0),
+                                          spreadRadius: 6,
+                                          blurRadius: 10,
+                                        )
+                                      ],
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                    child: Text(
+                                      "more",
+                                      style: TextStyle(
+                                        color: Colors.blue,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400,
+                                        letterSpacing: 0.2,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         )
                       ],
@@ -268,7 +318,7 @@ class _InsideScreenState extends State<InsideScreen> {
                           labelColor: Color(0xFF3D3D3D),
                           onTap: (_index) {
                             setState(() {
-                              _selektedIndex = _index;
+                              _selectedIndex = _index;
                             });
                           },
                           tabs: [
@@ -288,7 +338,7 @@ class _InsideScreenState extends State<InsideScreen> {
                         ),
                         height: 16,
                         width: 1,
-                        color: _selektedIndex == 2
+                        color: _selectedIndex == 2
                             ? Color.fromRGBO(60, 60, 67, 0.36)
                             : Colors.transparent,
                       ),
@@ -304,7 +354,7 @@ class _InsideScreenState extends State<InsideScreen> {
                         ),
                         height: 16,
                         width: 1,
-                        color: _selektedIndex == 0
+                        color: _selectedIndex == 0
                             ? Color.fromRGBO(60, 60, 67, 0.36)
                             : Colors.transparent,
                       ),
@@ -312,7 +362,11 @@ class _InsideScreenState extends State<InsideScreen> {
                   ),
                   Container(
                     width: double.infinity,
-                    margin: EdgeInsets.all(24),
+                    margin: EdgeInsets.only(
+                      top: 10,
+                      left: 24,
+                      right: 24,
+                    ),
                     decoration: BoxDecoration(
                       color: Color(0xFFD9D9D9),
                       borderRadius: BorderRadius.circular(12),
@@ -320,14 +374,14 @@ class _InsideScreenState extends State<InsideScreen> {
                     child: ListView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
-                      itemCount: dataSurah.length,
+                      itemCount: data.length,
                       itemBuilder: (context, index) {
                         return Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             SizedBox(
-                              width: 4,
+                              width: 12,
                             ),
                             Text(
                               (index + 1).toString(),
@@ -342,14 +396,14 @@ class _InsideScreenState extends State<InsideScreen> {
                             Expanded(
                               child: Column(
                                 children: [
-                                  SizedBox(height: 8),
+                                  SizedBox(height: 16),
                                   Row(
                                     children: [
                                       Expanded(
                                         child: Column(
                                           children: [
                                             Text(
-                                              dataSurah[index].surahName,
+                                              data[index].surahName,
                                               style: TextStyle(
                                                 color: Color(0xFF575757),
                                                 fontSize: 18,
@@ -357,8 +411,9 @@ class _InsideScreenState extends State<InsideScreen> {
                                                 fontWeight: FontWeight.w600,
                                               ),
                                             ),
+                                            SizedBox(height: 3),
                                             Text(
-                                              dataSurah[index].ayahMor,
+                                              data[index].ayahMor,
                                               style: TextStyle(
                                                 color: Color(0xFF888888),
                                                 fontSize: 16,
@@ -386,13 +441,13 @@ class _InsideScreenState extends State<InsideScreen> {
                                     ],
                                   ),
                                   SizedBox(height: 3),
-                                  index == dataSurah.length - 1
+                                  index == data.length - 1
                                       ? Container()
                                       : Container(
                                           height: 1,
                                           color: Color(0xFFCCCCCC),
                                         ),
-                                  index == dataSurah.length - 1
+                                  index == data.length - 1
                                       ? Container()
                                       : SizedBox(height: 8),
                                 ],
