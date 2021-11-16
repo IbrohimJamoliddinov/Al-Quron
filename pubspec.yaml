@@ -14,7 +14,6 @@ dependencies:
   cupertino_icons: ^1.0.2
   cached_network_image: ^3.1.0
   flutter_svg: ^0.22.0
-  flutter_switch: ^0.3.2
   percent_indicator: ^3.4.0
   modal_bottom_sheet: ^2.0.0
   carousel_slider: ^4.0.0

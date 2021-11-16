@@ -3,7 +3,6 @@ import 'package:al_quran/src/utils/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 
 class SettingTime extends StatefulWidget {
   final String title;
@@ -168,22 +167,20 @@ class _SettingTimeState extends State<SettingTime> {
                       ),
                     ),
                     Spacer(),
-                    Container(
-                      width: 52,
-                      height: 32,
-                      child: FlutterSwitch(
-                        width: 52,
-                        height: 32,
-                        toggleSize: 27.0,
+                    GestureDetector(
+                      child: CupertinoSwitch(
                         value: status,
-                        borderRadius: 16.0,
-                        activeColor: Colors.green,
-                        onToggle: (val) {
+                        onChanged: (bool value) {
                           setState(() {
-                            status = val;
+                            status = value;
                           });
                         },
                       ),
+                      onTap: () {
+                        setState(() {
+                          status = !status;
+                        });
+                      },
                     ),
                   ],
                 ),

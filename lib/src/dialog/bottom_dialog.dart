@@ -54,11 +54,12 @@ class BottomDialog {
                                 Container(
                                   margin: EdgeInsets.only(right: 16),
                                   child: GestureDetector(
-                                      onTap: () {
-                                        Navigator.pop(context);
-                                      },
-                                      child: SvgPicture.asset(
-                                          "assets/icons/close.svg")),
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: SvgPicture.asset(
+                                        "assets/icons/close.svg"),
+                                  ),
                                 ),
                               ],
                             ),
@@ -92,11 +93,12 @@ class BottomDialog {
                                       margin: EdgeInsets.symmetric(
                                           horizontal: 24, vertical: 6),
                                       child: Text(
-                                          "Tajweed rules will appear on ayahs of surahs while using it",
-                                          maxLines: 2,
-                                          style: TextStyle(
-                                            color: AppTheme.textColorGrey,
-                                          )),
+                                        "Tajweed rules will appear on ayahs of surahs while using it",
+                                        maxLines: 2,
+                                        style: TextStyle(
+                                          color: AppTheme.textColorGrey,
+                                        ),
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -334,7 +336,8 @@ class BottomDialog {
       RemoveLanguage(
         language: "nemis",
         name: "Hasan Efendi Nahi",
-      ),RemoveLanguage(
+      ),
+      RemoveLanguage(
         language: "tojik",
         name: "Hasan Efendi Nahi",
       ),
@@ -610,7 +613,9 @@ class BottomDialog {
                                                     "assets/icons/checkmark.svg",
                                                   )
                                                 : Container(),
-                                            SizedBox(width: 8,),
+                                            SizedBox(
+                                              width: 8,
+                                            ),
                                             SvgPicture.asset(
                                               "assets/icons/trash.svg",
                                             )

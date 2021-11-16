@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 
 class TextSwitch extends StatefulWidget {
   final String text;
@@ -47,20 +46,18 @@ class _TextSwitchState extends State<TextSwitch> {
             ),
           ),
           Spacer(),
-          Container(
-            width: 52,
-            height: 32,
-            child: FlutterSwitch(
-              width: 52,
-              height: 32,
-              toggleSize: 27.0,
+          GestureDetector(
+            child: CupertinoSwitch(
               value: widget.status,
-              borderRadius: 16.0,
-              activeColor: Colors.green,
-              onToggle: (val) {
-                widget.selected(val);
+              onChanged: (bool value) {
+                widget.selected(value);
               },
             ),
+            onTap: () {
+              setState(() {
+                widget.selected(!widget.status);
+              });
+            },
           ),
         ],
       ),

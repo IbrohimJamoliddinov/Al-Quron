@@ -3,6 +3,7 @@ import 'package:al_quran/src/ui/more/shahada.dart';
 import 'package:al_quran/src/widgets/menu_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import 'names99.dart';
@@ -39,10 +40,8 @@ class _MoreScreenState extends State<MoreScreen> {
                     },
                     child: Container(
                       margin: EdgeInsets.only(right: 16),
-                      child: Icon(
-                        Icons.settings_outlined,
-                        size: 24,
-                        color: Colors.black,
+                      child: SvgPicture.asset(
+                        "assets/icons/settings.svg",
                       ),
                     ),
                   )
@@ -63,9 +62,14 @@ class _MoreScreenState extends State<MoreScreen> {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context){
-                                return NamesScreen();
-                              }));
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return NamesScreen();
+                                  },
+                                ),
+                              );
                             },
                             child: MenuWidget(
                               name: "99 names",
@@ -98,7 +102,8 @@ class _MoreScreenState extends State<MoreScreen> {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context){
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
                                 return ShahadaScreen();
                               }));
                             },
