@@ -425,13 +425,13 @@ class _InsideScreenState extends State<InsideScreen> {
                                   ),
                                 ),
                                 SvgPicture.asset(
-                                  "assets/images/cloud.svg",
+                                  "assets/icons/cloud.svg",
                                 ),
                                 SizedBox(
                                   width: 8,
                                 ),
                                 SvgPicture.asset(
-                                  "assets/images/ellipse.svg",
+                                  "assets/icons/more_horizontal.svg",
                                 ),
                                 SizedBox(
                                   width: 22,

@@ -1,6 +1,6 @@
 import 'package:al_quran/src/ui/home/home_screen.dart';
 import 'package:al_quran/src/ui/learn/learn_screen.dart';
-import 'package:al_quran/src/ui/quran/inside_read.dart';
+import 'package:al_quran/src/ui/quran/quran_screen.dart';
 import 'package:al_quran/src/ui/more/more_screen.dart';
 import 'package:al_quran/src/ui/tasbeh/tasbeh_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,7 +17,7 @@ class _MainScreenState extends State<MainScreen> {
   List<Widget> data = [
     HomeScreen(),
     LearnScreen(),
-    InsideRead(),
+    QuranScreen(),
     TasbehScreen(),
     MoreScreen(),
   ];
@@ -51,7 +51,7 @@ class _MainScreenState extends State<MainScreen> {
               height: 24,
               width: 24,
               child: SvgPicture.asset(
-                "assets/icons/home1.svg",
+                "assets/menu/home.svg",
                 color: selectedIndex == 0 ? Color(0xFF0A84FF) : Colors.grey,
               ),
             ),
@@ -63,7 +63,7 @@ class _MainScreenState extends State<MainScreen> {
               width: 24,
               child: Center(
                 child: SvgPicture.asset(
-                  "assets/icons/group.svg",
+                  "assets/menu/learn.svg",
                   color: selectedIndex == 1 ? Color(0xFF0A84FF) : Colors.grey,
                 ),
               ),
@@ -76,7 +76,7 @@ class _MainScreenState extends State<MainScreen> {
               width: 24,
               child: Center(
                 child: SvgPicture.asset(
-                  "assets/icons/book.svg",
+                  "assets/menu/quran.svg",
                   color: selectedIndex == 2 ? Color(0xFF0A84FF) : Colors.grey,
                 ),
               ),
@@ -89,7 +89,7 @@ class _MainScreenState extends State<MainScreen> {
               width: 24,
               child: Center(
                 child: SvgPicture.asset(
-                  "assets/icons/tasbeh.svg",
+                  "assets/menu/tasbeh.svg",
                   color: selectedIndex == 3 ? Color(0xFF0A84FF) : Colors.grey,
                 ),
               ),
@@ -102,7 +102,7 @@ class _MainScreenState extends State<MainScreen> {
               width: 24,
               child: Center(
                 child: SvgPicture.asset(
-                  "assets/icons/moree.svg",
+                  "assets/menu/more.svg",
                   color: selectedIndex == 4 ? Color(0xFF0A84FF) : Colors.grey,
                 ),
               ),
