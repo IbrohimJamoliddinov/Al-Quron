@@ -19,6 +19,9 @@ dependencies:
   carousel_slider: ^4.0.0
   shared_preferences: ^2.0.6
   youtube_player_flutter: ^8.0.0
+  flutter_qiblah: ^2.0.2
+  geolocator: ^7.7.1
+  permission_handler: ^8.1.6
 
 
 

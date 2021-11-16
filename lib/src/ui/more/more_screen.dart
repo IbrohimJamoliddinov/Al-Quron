@@ -1,4 +1,5 @@
 import 'package:al_quran/src/dialog/bottom_dialog.dart';
+import 'package:al_quran/src/ui/more/qiblah/qiblah_compass_screen.dart';
 import 'package:al_quran/src/ui/more/shahada.dart';
 import 'package:al_quran/src/ui/more/youtube_screen.dart';
 import 'package:al_quran/src/widgets/menu_widget.dart';
@@ -137,13 +138,25 @@ class _MoreScreenState extends State<MoreScreen> {
                               ),
                             ),
                           ),
-                          MenuWidget(
-                            name: "Qibla",
-                            widthBox:
-                                (MediaQuery.of(context).size.width - 66) / 2,
-                            heightBox: 120,
-                            marginBox: EdgeInsets.only(
-                              bottom: 16,
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                CupertinoPageRoute(
+                                  builder: (context) {
+                                    return QiblahCompassScreen();
+                                  },
+                                ),
+                              );
+                            },
+                            child: MenuWidget(
+                              name: "Qibla",
+                              widthBox:
+                                  (MediaQuery.of(context).size.width - 66) / 2,
+                              heightBox: 120,
+                              marginBox: EdgeInsets.only(
+                                bottom: 16,
+                              ),
                             ),
                           ),
                           GestureDetector(
