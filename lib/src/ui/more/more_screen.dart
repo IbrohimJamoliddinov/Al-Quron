@@ -1,8 +1,11 @@
 import 'package:al_quran/src/dialog/bottom_dialog.dart';
+import 'package:al_quran/src/ui/more/shahada.dart';
 import 'package:al_quran/src/widgets/menu_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+
+import 'names99.dart';
 
 class MoreScreen extends StatefulWidget {
   @override
@@ -59,7 +62,11 @@ class _MoreScreenState extends State<MoreScreen> {
                       Column(
                         children: [
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context){
+                                return NamesScreen();
+                              }));
+                            },
                             child: MenuWidget(
                               name: "99 names",
                               widthBox:
@@ -89,14 +96,21 @@ class _MoreScreenState extends State<MoreScreen> {
                       ),
                       Column(
                         children: [
-                          MenuWidget(
-                            name: "Shaxada",
-                            widthBox:
-                                (MediaQuery.of(context).size.width - 48) / 2 -
-                                    18,
-                            heightBox: 180,
-                            marginBox: EdgeInsets.only(
-                              bottom: 16,
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context){
+                                return ShahadaScreen();
+                              }));
+                            },
+                            child: MenuWidget(
+                              name: "Shaxada",
+                              widthBox:
+                                  (MediaQuery.of(context).size.width - 48) / 2 -
+                                      18,
+                              heightBox: 180,
+                              marginBox: EdgeInsets.only(
+                                bottom: 16,
+                              ),
                             ),
                           ),
                           MenuWidget(

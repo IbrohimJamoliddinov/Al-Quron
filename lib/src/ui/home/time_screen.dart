@@ -1,6 +1,5 @@
 import 'package:al_quran/src/models/player_model.dart';
 import 'package:al_quran/src/models/week_model.dart';
-import 'package:al_quran/src/ui/home/home_screen.dart';
 import 'package:al_quran/src/ui/home/setting_time.dart';
 import 'package:al_quran/src/utils/app_theme.dart';
 import 'package:al_quran/src/widgets/title_widget.dart';
