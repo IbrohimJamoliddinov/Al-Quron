@@ -375,84 +375,79 @@ class _InsideScreenState extends State<InsideScreen> {
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       itemCount: data.length,
+                      padding: EdgeInsets.only(top: 4),
                       itemBuilder: (context, index) {
-                        return Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
+                        return Column(
                           children: [
-                            SizedBox(
-                              width: 12,
-                            ),
-                            Text(
-                              (index + 1).toString(),
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                letterSpacing: 0.16,
-                              ),
-                            ),
-                            SizedBox(width: 14),
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  SizedBox(height: 16),
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: Column(
-                                          children: [
-                                            Text(
-                                              data[index].surahName,
-                                              style: TextStyle(
-                                                color: Color(0xFF575757),
-                                                fontSize: 18,
-                                                letterSpacing: 0.2,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            ),
-                                            SizedBox(height: 3),
-                                            Text(
-                                              data[index].ayahMor,
-                                              style: TextStyle(
-                                                color: Color(0xFF888888),
-                                                fontSize: 16,
-                                                letterSpacing: 0.2,
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                            )
-                                          ],
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                        ),
-                                      ),
-                                      SvgPicture.asset(
-                                        "assets/images/cloud.svg",
-                                      ),
-                                      SizedBox(
-                                        width: 8,
-                                      ),
-                                      SvgPicture.asset(
-                                        "assets/images/ellipse.svg",
-                                      ),
-                                      SizedBox(
-                                        width: 22,
-                                      ),
-                                    ],
+                            SizedBox(height: 12),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  width: 12,
+                                ),
+                                Text(
+                                  (index + 1).toString(),
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                    letterSpacing: 0.16,
                                   ),
-                                  SizedBox(height: 3),
-                                  index == data.length - 1
-                                      ? Container()
-                                      : Container(
-                                          height: 1,
-                                          color: Color(0xFFCCCCCC),
+                                ),
+                                SizedBox(width: 14),
+                                Expanded(
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        data[index].surahName,
+                                        style: TextStyle(
+                                          color: Color(0xFF575757),
+                                          fontSize: 18,
+                                          letterSpacing: 0.2,
+                                          fontWeight: FontWeight.w600,
                                         ),
-                                  index == data.length - 1
-                                      ? Container()
-                                      : SizedBox(height: 8),
-                                ],
-                              ),
+                                      ),
+                                      SizedBox(height: 3),
+                                      Text(
+                                        data[index].ayahMor,
+                                        style: TextStyle(
+                                          color: Color(0xFF888888),
+                                          fontSize: 16,
+                                          letterSpacing: 0.2,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      )
+                                    ],
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                  ),
+                                ),
+                                SvgPicture.asset(
+                                  "assets/images/cloud.svg",
+                                ),
+                                SizedBox(
+                                  width: 8,
+                                ),
+                                SvgPicture.asset(
+                                  "assets/images/ellipse.svg",
+                                ),
+                                SizedBox(
+                                  width: 22,
+                                ),
+                              ],
                             ),
+                            SizedBox(height: 7),
+                            index == data.length - 1
+                                ? Container()
+                                : Container(
+                                    margin: EdgeInsets.only(
+                                      left: 34,
+                                    ),
+                                    height: 1,
+                                    color: Color(0xFFCCCCCC),
+                                  ),
                           ],
                         );
                       },

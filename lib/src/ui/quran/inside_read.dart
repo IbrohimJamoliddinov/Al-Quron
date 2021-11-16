@@ -4,15 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class InsideRead extends StatefulWidget {
-
   @override
   _InsideReadState createState() => _InsideReadState();
 }
 
 class _InsideReadState extends State<InsideRead> {
-  int _selektedIndex = 0;
+  int _selectedIndex = 0;
 
-  List<SurahScreen> dataSurah = [
+  List<SurahScreen> data = [
     SurahScreen(surahName: "Sura Al-Fatihah", ayahMor: "Makkah,  7 ayah"),
     SurahScreen(surahName: "Sura Al-Baqarah", ayahMor: "Madinah,  286 ayah"),
     SurahScreen(surahName: "Sura An-Nisa", ayahMor: "Madinah,  176 ayah"),
@@ -31,29 +30,9 @@ class _InsideReadState extends State<InsideRead> {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          leadingWidth: 125,
           backgroundColor: Color(0xFFDCDCDC),
           elevation: 0,
-          leading: Row(
-            children: [
-              SizedBox(
-                width: 16,
-              ),
-              Icon(
-                Icons.arrow_back_ios,
-                color: Color(0xFF3A3A3C),
-              ),
-              Text(
-                "Back",
-                style: TextStyle(
-                  color: Color(0xFF3A3A3C),
-                  fontWeight: FontWeight.w400,
-                  fontSize: 16,
-                  letterSpacing: -0.41,
-                ),
-              ),
-            ],
-          ),
+          centerTitle: true,
           title: Text(
             "Quran",
             textAlign: TextAlign.center,
@@ -67,12 +46,10 @@ class _InsideReadState extends State<InsideRead> {
         body: Column(
           children: [
             Container(
-              width: MediaQuery.of(context).size.width,
               color: Color(0xFFDCDCDC),
-              padding: EdgeInsets.only(left: 24, right: 24, bottom: 10),
+              padding: EdgeInsets.only(left: 24.0, right: 24, bottom: 10),
               child: Container(
                 height: 40,
-                padding: EdgeInsets.symmetric(horizontal: 10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   color: Color(0xFFEBEBEB),
@@ -80,18 +57,15 @@ class _InsideReadState extends State<InsideRead> {
                 child: Row(
                   children: [
                     SizedBox(
-                      height: 8,
+                      width: 8,
                     ),
-                    Icon(
-                      Icons.search,
-                      size: 24,
-                      color: Colors.grey,
+                    SvgPicture.asset(
+                      "assets/icons/search.svg",
                     ),
                     SizedBox(
                       width: 8,
                     ),
-                    Container(
-                      width: 120,
+                    Expanded(
                       child: TextField(
                         autofocus: false,
                         decoration: InputDecoration(
@@ -121,7 +95,7 @@ class _InsideReadState extends State<InsideRead> {
                     children: [
                       Container(
                         height: 32,
-                        margin: EdgeInsets.only(left: 24, right: 24, top: 22),
+                        margin: EdgeInsets.only(left: 24, right: 24, top: 20),
                         padding: EdgeInsets.all(2),
                         decoration: BoxDecoration(
                           color: Color(0xFFEAEAEA),
@@ -137,7 +111,7 @@ class _InsideReadState extends State<InsideRead> {
                           labelColor: Color(0xFF3D3D3D),
                           onTap: (_index) {
                             setState(() {
-                              _selektedIndex = _index;
+                              _selectedIndex = _index;
                             });
                           },
                           tabs: [
@@ -152,12 +126,12 @@ class _InsideReadState extends State<InsideRead> {
                         curve: Curves.easeInOut,
                         margin: EdgeInsets.only(
                           left:
-                          24 + (MediaQuery.of(context).size.width - 48) / 3,
+                              24 + (MediaQuery.of(context).size.width - 48) / 3,
                           top: 30,
                         ),
                         height: 16,
                         width: 1,
-                        color: _selektedIndex == 2
+                        color: _selectedIndex == 2
                             ? Color.fromRGBO(60, 60, 67, 0.36)
                             : Colors.transparent,
                       ),
@@ -173,7 +147,7 @@ class _InsideReadState extends State<InsideRead> {
                         ),
                         height: 16,
                         width: 1,
-                        color: _selektedIndex == 0
+                        color: _selectedIndex == 0
                             ? Color.fromRGBO(60, 60, 67, 0.36)
                             : Colors.transparent,
                       ),
@@ -181,7 +155,11 @@ class _InsideReadState extends State<InsideRead> {
                   ),
                   Container(
                     width: double.infinity,
-                    margin: EdgeInsets.all(24),
+                    margin: EdgeInsets.only(
+                      top: 10,
+                      left: 24,
+                      right: 24,
+                    ),
                     decoration: BoxDecoration(
                       color: Color(0xFFD9D9D9),
                       borderRadius: BorderRadius.circular(12),
@@ -189,84 +167,80 @@ class _InsideReadState extends State<InsideRead> {
                     child: ListView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
-                      itemCount: dataSurah.length,
+                      itemCount: data.length,
+                      padding: EdgeInsets.only(top: 4),
                       itemBuilder: (context, index) {
-                        return Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
+                        return Column(
                           children: [
-                            SizedBox(
-                              width: 4,
-                            ),
-                            Text(
-                              (index + 1).toString(),
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                letterSpacing: 0.16,
-                              ),
-                            ),
-                            SizedBox(width: 14),
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  SizedBox(height: 8),
-                                  Row(
+                            SizedBox(height: 12),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  width: 12,
+                                ),
+                                Text(
+                                  (index + 1).toString(),
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                    letterSpacing: 0.16,
+                                  ),
+                                ),
+                                SizedBox(width: 14),
+                                Expanded(
+                                  child: Column(
                                     children: [
-                                      Expanded(
-                                        child: Column(
-                                          children: [
-                                            Text(
-                                              dataSurah[index].surahName,
-                                              style: TextStyle(
-                                                color: Color(0xFF575757),
-                                                fontSize: 18,
-                                                letterSpacing: 0.2,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            ),
-                                            Text(
-                                              dataSurah[index].ayahMor,
-                                              style: TextStyle(
-                                                color: Color(0xFF888888),
-                                                fontSize: 16,
-                                                letterSpacing: 0.2,
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                            )
-                                          ],
-                                          crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      Text(
+                                        data[index].surahName,
+                                        style: TextStyle(
+                                          color: Color(0xFF575757),
+                                          fontSize: 18,
+                                          letterSpacing: 0.2,
+                                          fontWeight: FontWeight.w600,
                                         ),
                                       ),
-                                      SvgPicture.asset(
-                                        "assets/images/cloud.svg",
-                                      ),
-                                      SizedBox(
-                                        width: 8,
-                                      ),
-                                      SvgPicture.asset(
-                                        "assets/images/ellipse.svg",
-                                      ),
-                                      SizedBox(
-                                        width: 22,
-                                      ),
+                                      SizedBox(height: 3),
+                                      Text(
+                                        data[index].ayahMor,
+                                        style: TextStyle(
+                                          color: Color(0xFF888888),
+                                          fontSize: 16,
+                                          letterSpacing: 0.2,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      )
                                     ],
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.start,
                                   ),
-                                  SizedBox(height: 3),
-                                  index == dataSurah.length - 1
-                                      ? Container()
-                                      : Container(
+                                ),
+                                SvgPicture.asset(
+                                  "assets/images/cloud.svg",
+                                ),
+                                SizedBox(
+                                  width: 8,
+                                ),
+                                SvgPicture.asset(
+                                  "assets/images/ellipse.svg",
+                                ),
+                                SizedBox(
+                                  width: 22,
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 7),
+                            index == data.length - 1
+                                ? Container()
+                                : Container(
+                                    margin: EdgeInsets.only(
+                                      left: 34,
+                                    ),
                                     height: 1,
                                     color: Color(0xFFCCCCCC),
                                   ),
-                                  index == dataSurah.length - 1
-                                      ? Container()
-                                      : SizedBox(height: 8),
-                                ],
-                              ),
-                            ),
                           ],
                         );
                       },
