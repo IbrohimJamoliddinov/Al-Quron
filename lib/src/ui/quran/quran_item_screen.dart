@@ -193,33 +193,30 @@ class _QuranItemScreenState extends State<QuranItemScreen> {
                                 margin: EdgeInsets.only(
                                   top: 5,
                                 ),
+                                height: 6,
                                 width: double.infinity,
                                 alignment: Alignment.centerRight,
-                                child: GestureDetector(
-                                  onTap: () {
-                                    print("object");
-                                    PopupMenuButton(
-                                      itemBuilder: (BuildContext context) {
-                                        return [
-                                          PopupMenuItem(
-                                            child: Text('Preview'),
-                                          ),
-                                          PopupMenuItem(
-                                            child: Text('Share'),
-                                          ),
-                                          PopupMenuItem(
-                                            child: Text('Get Link'),
-                                          ),
-                                          PopupMenuItem(
-                                            child: Text('Remove'),
-                                          ),
-                                        ];
-                                      },
-                                    );
-                                  },
-                                  child: SvgPicture.asset(
+                                child: PopupMenuButton(
+                                  padding: EdgeInsets.zero,
+                                  icon: SvgPicture.asset(
                                     "assets/icons/more_horizontal.svg",
                                   ),
+                                  itemBuilder: (BuildContext context) {
+                                    return [
+                                      PopupMenuItem(
+                                        child: Text('Play'),
+                                      ),
+                                      PopupMenuItem(
+                                        child: Text('Bookmark'),
+                                      ),
+                                      PopupMenuItem(
+                                        child: Text('Share'),
+                                      ),
+                                      PopupMenuItem(
+                                        child: Text('Recitation options'),
+                                      ),
+                                    ];
+                                  },
                                 ),
                               )
                             ],
