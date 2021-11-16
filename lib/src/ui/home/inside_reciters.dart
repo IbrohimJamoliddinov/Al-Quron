@@ -34,7 +34,7 @@ class _InsideScreenState extends State<InsideScreen> {
           backgroundColor: Color(0xFFDCDCDC),
           elevation: 0,
           leading: GestureDetector(
-            onTap: (){
+            onTap: () {
               Navigator.pop(context);
             },
             child: Row(

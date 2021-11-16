@@ -373,49 +373,61 @@ class _HomeScreenState extends State<HomeScreen> {
               scrollDirection: Axis.horizontal,
               itemCount: 4,
               itemBuilder: (context, value) {
-                return Container(
-                  width: 252,
-                  margin: EdgeInsets.only(right: 16),
-                  child: Stack(
-                    children: [
-                      Align(
-                        child: Container(
-                          height: 98,
-                          width: 252,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Color(0xFFCDCDCD),
-                          ),
-                          padding: EdgeInsets.only(
-                            top: 12,
-                            bottom: 12,
-                            left: 116,
-                            right: 12,
-                          ),
-                          child: Text(
-                            dataProfile[value].name,
-                            maxLines: 2,
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 23,
-                              letterSpacing: 0.2,
+                return GestureDetector(
+                  onTap: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return RecitersScreen();
+                        },
+                      ),
+                    );
+                  },
+                  child: Container(
+                    width: 252,
+                    margin: EdgeInsets.only(right: 16),
+                    child: Stack(
+                      children: [
+                        Align(
+                          child: Container(
+                            height: 98,
+                            width: 252,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: Color(0xFFCDCDCD),
+                            ),
+                            padding: EdgeInsets.only(
+                              top: 12,
+                              bottom: 12,
+                              left: 116,
+                              right: 12,
+                            ),
+                            child: Text(
+                              dataProfile[value].name,
+                              maxLines: 2,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 23,
+                                letterSpacing: 0.2,
+                              ),
                             ),
                           ),
+                          alignment: Alignment.bottomCenter,
                         ),
-                        alignment: Alignment.bottomCenter,
-                      ),
-                      ClipRRect(
-                        child: Image.asset(
-                          dataProfile[value].image,
-                          height: 141,
-                          width: 104,
-                          fit: BoxFit.cover,
+                        ClipRRect(
+                          child: Image.asset(
+                            dataProfile[value].image,
+                            height: 141,
+                            width: 104,
+                            fit: BoxFit.cover,
+                          ),
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(8),
+                          ),
                         ),
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(8),
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 );
               },
