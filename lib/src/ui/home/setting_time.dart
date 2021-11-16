@@ -7,6 +7,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 
 class SettingTime extends StatefulWidget {
+  final String title;
+
+  SettingTime({
+    required this.title,
+  });
+
   @override
   _SettingTimeState createState() => _SettingTimeState();
 }
@@ -53,40 +59,40 @@ class _SettingTimeState extends State<SettingTime> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leadingWidth: 125,
+        leadingWidth: 98,
         backgroundColor: Color(0xFFDCDCDC),
         elevation: 0,
+        centerTitle: true,
         leading: GestureDetector(
           onTap: () {
-            setState(() {
-              Navigator.pop(context, MaterialPageRoute(builder: (context) {
-                return TimeScreen();
-              }));
-            });
+            Navigator.pop(context);
           },
-          child: Row(
-            children: [
-              SizedBox(
-                width: 16,
-              ),
-              Icon(
-                Icons.arrow_back_ios,
-                color: Color(0xFF3A3A3C),
-              ),
-              Text(
-                "Back",
-                style: TextStyle(
-                  color: Color(0xFF3A3A3C),
-                  fontWeight: FontWeight.w400,
-                  fontSize: 16,
-                  letterSpacing: -0.41,
+          child: Container(
+            child: Row(
+              children: [
+                SizedBox(
+                  width: 16,
                 ),
-              ),
-            ],
+                SvgPicture.asset(
+                  "assets/icons/arrow_left_bold.svg",
+                  height: 18,
+                ),
+                SizedBox(width: 5),
+                Text(
+                  "Back",
+                  style: TextStyle(
+                    color: Color(0xFF3A3A3C),
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16,
+                    letterSpacing: -0.41,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         title: Text(
-          "Peshin",
+          widget.title,
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 18,
@@ -99,13 +105,15 @@ class _SettingTimeState extends State<SettingTime> {
         padding: EdgeInsets.symmetric(horizontal: 24),
         children: [
           Container(
-            height: 108,
-            width: MediaQuery.of(context).size.width,
             margin: EdgeInsets.only(
-              top: 16,
-              bottom: 8,
+              top: 18,
             ),
-            padding: EdgeInsets.all(16),
+            padding: EdgeInsets.only(
+              top: 16,
+              left: 16,
+              right: 16,
+              bottom: 9,
+            ),
             decoration: BoxDecoration(
               color: AppTheme.bgColorToo,
               borderRadius: BorderRadius.circular(12),
@@ -136,17 +144,15 @@ class _SettingTimeState extends State<SettingTime> {
                     ),
                   ],
                 ),
-                Expanded(
-                  child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 14),
-                    height: 0,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      border: Border(
-                        top: BorderSide(
-                          color: Color(0xFFDADADA),
-                          width: 1,
-                        ),
+                Container(
+                  margin: EdgeInsets.symmetric(vertical: 14),
+                  height: 1,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    border: Border(
+                      top: BorderSide(
+                        color: Color(0xFFDADADA),
+                        width: 1,
                       ),
                     ),
                   ),
@@ -185,6 +191,7 @@ class _SettingTimeState extends State<SettingTime> {
               ],
             ),
           ),
+          SizedBox(height: 6),
           Text(
             "Full track of the current selected athan will be played end of the track",
             style: TextStyle(
@@ -196,57 +203,58 @@ class _SettingTimeState extends State<SettingTime> {
           SizedBox(
             height: 16,
           ),
-          Row(
-            children: [
-              Text(
-                "Athan",
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 22,
-                  color: Color(0xFF535353),
-                ),
-              )
-            ],
+          Text(
+            "Athan",
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 22,
+              color: Color(0xFF535353),
+            ),
           ),
           Container(
             margin: EdgeInsets.only(
               top: 8,
               bottom: 24,
             ),
-            height: 438,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               color: Color(0xFFCDCDCD),
               borderRadius: BorderRadius.circular(12),
             ),
+            padding: EdgeInsets.only(top: 10),
             child: ListView.builder(
+              padding: EdgeInsets.zero,
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: dataSignal.length,
-              itemBuilder: (context, verbl) {
+              itemBuilder: (context, index) {
                 return GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     setState(() {
-                      _selectedIndex = verbl;
+                      _selectedIndex = index;
                     });
                   },
-                  child: Container(
-                    height: 54,
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 54,
-                          width: MediaQuery.of(context).size.width,
-                          padding: EdgeInsets.only(left: 16, right: 16),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            color: _selectedIndex == verbl ? Color(0xFFE1E1E1): Colors.transparent,
-                          ),
-                          alignment: Alignment.centerLeft,
-                          child: Row(
-                            children: [
-                              Text(
-                                dataSignal[verbl].name,
+                  child: Column(
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        padding: EdgeInsets.only(
+                          left: 18,
+                          right: 18,
+                          top: 12,
+                          bottom: 12,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: _selectedIndex == index
+                              ? Color(0xFFE1E1E1)
+                              : Colors.transparent,
+                        ),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                dataSignal[index].name,
                                 style: TextStyle(
                                   color: AppTheme.textColorGrey,
                                   fontSize: 16,
@@ -254,37 +262,28 @@ class _SettingTimeState extends State<SettingTime> {
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
-                              Spacer(),
-                              Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(4),
-                                  color: Colors.grey,
-                                ),
-                                child: SvgPicture.asset(
-                                  dataSignal[verbl].icon,
-                                ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4),
+                                color: Colors.grey,
                               ),
-                            ],
-                          ),
+                              child: SvgPicture.asset(
+                                dataSignal[index].icon,
+                              ),
+                            ),
+                          ],
                         ),
-                        verbl == dataSignal.length - 1
-                            ? Container()
-                            : Expanded(
-                                child: Container(
-                                  height: 0,
-                                  width: MediaQuery.of(context).size.width,
-                                  decoration: BoxDecoration(
-                                    border: Border(
-                                      top: BorderSide(
-                                        color: Color(0xFFDADADA),
-                                        width: 1,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                      ],
-                    ),
+                      ),
+                      index == dataSignal.length - 1
+                          ? Container()
+                          : Container(
+                              height: 1,
+                              width: MediaQuery.of(context).size.width,
+                              color: Color(0xFFDADADA),
+                              margin: EdgeInsets.symmetric(horizontal: 18),
+                            ),
+                    ],
                   ),
                 );
               },

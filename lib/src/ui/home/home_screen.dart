@@ -15,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _selektedIndex = 1;
+  int _selectedIndex = 1;
 
   String bomdod = "03:00";
   String peshin = "12:27";
@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   String shom = "20:10";
   String xufton = "21:40";
 
-  List<QoriModel> dataProfil = [
+  List<QoriModel> dataProfile = [
     QoriModel(
       image: "assets/images/alAfasiy.png",
       name: "Mishary Rashid Al Afasy",
@@ -76,202 +76,227 @@ class _HomeScreenState extends State<HomeScreen> {
       body: ListView(
         padding: EdgeInsets.zero,
         children: [
-          Container(
-            height: 220,
-            width: MediaQuery.of(context).size.width,
-            margin: EdgeInsets.only(
-              left: 16,
-              top: 54,
-              right: 16,
-              bottom: 16,
-            ),
-            decoration: BoxDecoration(
-              color: AppTheme.bgColorOwe,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Row(
-              children: [
-                Container(
-                  child: CircularPercentIndicator(
-                    radius: 160.0,
-                    lineWidth: 10.0,
-                    percent: 0.68,
-                    animation: true,
-                    animationDuration: 1200,
-                    center: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Peshin",
-                            style: TextStyle(
-                              color: Color(0xFFB6B6B6),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              letterSpacing: 0.2,
-                            ),
-                          ),
-                          Text(
-                            peshin,
-                            style: TextStyle(
-                              color: Color(0xFF434343),
-                              fontWeight: FontWeight.w700,
-                              fontSize: 38,
-                              letterSpacing: 0.2,
-                            ),
-                          ),
-                          Text(
-                            "-01:52:00",
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                                letterSpacing: 0.2,
-                                color: AppTheme.textColorGrey),
-                          ),
-                        ],
-                      ),
-                    ),
-                    circularStrokeCap: CircularStrokeCap.butt,
-                    progressColor: Color(0xFF5F5F5F),
-                  ),
-                  margin: EdgeInsets.only(left: 16),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return TimeScreen(
+                      title: data[_selectedIndex].neme,
+                    );
+                  },
                 ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Container(
-                        width: 28,
-                        height: 28,
-                        margin: EdgeInsets.only(top: 24),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: Color(0xFFADADAD),
+              );
+            },
+            child: Container(
+              height: 220,
+              width: MediaQuery.of(context).size.width,
+              margin: EdgeInsets.only(
+                left: 16,
+                top: 54,
+                right: 16,
+              ),
+              decoration: BoxDecoration(
+                color: AppTheme.bgColorOwe,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    child: CircularPercentIndicator(
+                      radius: 160.0,
+                      lineWidth: 10.0,
+                      percent: 0.68,
+                      animation: true,
+                      animationDuration: 1200,
+                      center: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Peshin",
+                              style: TextStyle(
+                                color: Color(0xFFB6B6B6),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: 0.2,
+                              ),
+                            ),
+                            Text(
+                              peshin,
+                              style: TextStyle(
+                                color: Color(0xFF434343),
+                                fontWeight: FontWeight.w700,
+                                fontSize: 38,
+                                letterSpacing: 0.2,
+                              ),
+                            ),
+                            Text(
+                              "-01:52:00",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                  letterSpacing: 0.2,
+                                  color: AppTheme.textColorGrey),
+                            ),
+                          ],
                         ),
-                        child: SvgPicture.asset(
-                          "assets/icons/speaker.svg",
-                          width: 24,
+                      ),
+                      circularStrokeCap: CircularStrokeCap.butt,
+                      progressColor: Color(0xFF5F5F5F),
+                    ),
+                    margin: EdgeInsets.only(left: 16),
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Container(
+                          width: 28,
+                          height: 28,
+                          margin: EdgeInsets.only(top: 24),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: Color(0xFFADADAD),
+                          ),
+                          child: SvgPicture.asset(
+                            "assets/icons/speaker.svg",
+                            width: 24,
+                            height: 24,
+                          ),
+                        ),
+                        SizedBox(
                           height: 24,
                         ),
-                      ),
-                      SizedBox(
-                        height: 24,
-                      ),
-                      Text(
-                        "Shavval 14",
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 0.2,
-                          color: AppTheme.textColorGrey,
-                        ),
-                      ),
-                      Text(
-                        "1442 hijriy",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 0.2,
-                          color: Color(0xFF8B8B8B),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 24,
-                      ),
-                      Container(
-                        width: 120,
-                        height: 32,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: Color(0xFFC4C4C4),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "Tashakent, UZ",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 16,
-                              letterSpacing: 0.3,
-                              color: Color(0xFF6B6B6B),
-                            ),
+                        Text(
+                          "Shavval 14",
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: 0.2,
+                            color: AppTheme.textColorGrey,
                           ),
                         ),
-                      ),
-                    ],
+                        Text(
+                          "1442 hijriy",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: 0.2,
+                            color: Color(0xFF8B8B8B),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 24,
+                        ),
+                        Row(
+                          children: [
+                            Spacer(),
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: Color(0xFFC4C4C4),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 4),
+                              child: Text(
+                                "Tashakent, UZ",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16,
+                                  letterSpacing: 0.3,
+                                  color: Color(0xFF6B6B6B),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                SizedBox(
-                  width: 24,
-                ),
-              ],
+                  SizedBox(
+                    width: 24,
+                  ),
+                ],
+              ),
             ),
           ),
           TitleWidget(
             textLeft: "Prayer time",
             colorLeft: Color(0xFF242424),
             leftSize: 26,
+            margin: EdgeInsets.only(top: 22, left: 24, bottom: 6),
           ),
           Container(
             height: 80,
             child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                itemCount: data.length,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      _selektedIndex = index;
-                      setState(() {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return TimeScreen();
-                        }));
-                      });
-                    },
-                    child: AnimatedContainer(
-                      duration: Duration(milliseconds: 270),
-                      curve: Curves.easeInOut,
-                      height: 80,
-                      width: 120,
-                      padding: EdgeInsets.symmetric(horizontal: 16),
-                      margin: EdgeInsets.only(
-                        left: 8,
-                        right: 8,
-                        top: 8,
+              scrollDirection: Axis.horizontal,
+              padding: EdgeInsets.only(
+                left: 24,
+                right: 8,
+              ),
+              itemCount: data.length,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _selectedIndex = index;
+                    });
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return TimeScreen(
+                            title: data[index].neme,
+                          );
+                        },
                       ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: _selektedIndex == index
-                            ? Color(0xFFE1E1E1)
-                            : Color(0xFFC4C4C4),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            data[index].neme,
-                            style: TextStyle(
-                              color: Color(0xFF6B6B6B),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              letterSpacing: 0.2,
-                            ),
-                          ),
-                          Text(
-                            data[index].time,
-                            style: TextStyle(
-                              color: Color(0xFF6B6B6B),
-                              fontSize: 28,
-                              fontWeight: FontWeight.w600,
-                              letterSpacing: 0.2,
-                            ),
-                          ),
-                        ],
-                      ),
+                    );
+                  },
+                  child: AnimatedContainer(
+                    duration: Duration(milliseconds: 270),
+                    curve: Curves.easeInOut,
+                    height: 80,
+                    width: 120,
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    margin: EdgeInsets.only(
+                      right: 16,
                     ),
-                  );
-                }),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: _selectedIndex == index
+                          ? Color(0xFFE1E1E1)
+                          : Color(0xFFC4C4C4),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          data[index].neme,
+                          style: TextStyle(
+                            color: Color(0xFF6B6B6B),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            letterSpacing: 0.2,
+                          ),
+                        ),
+                        Text(
+                          data[index].time,
+                          style: TextStyle(
+                            color: Color(0xFF6B6B6B),
+                            fontSize: 28,
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: 0.2,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
           ),
           TitleWidget(
             textLeft: "Learn",
@@ -280,16 +305,21 @@ class _HomeScreenState extends State<HomeScreen> {
             margin: EdgeInsets.only(top: 22, bottom: 6, left: 24),
           ),
           Container(
-            height: 140,
+            height: (MediaQuery.of(context).size.width - 48) * 140 / 324,
             width: MediaQuery.of(context).size.width,
-            margin: EdgeInsets.only(left: 24, right: 24, bottom: 22),
+            margin: EdgeInsets.only(left: 24, right: 24),
             decoration: BoxDecoration(
               color: Color(0xFFC4C4C4),
               borderRadius: BorderRadius.circular(8),
             ),
           ),
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 16),
+            margin: EdgeInsets.only(
+              top: 22,
+              left: 22,
+              right: 24,
+              bottom: 4,
+            ),
             child: Row(
               children: [
                 Text(
@@ -303,13 +333,21 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 Spacer(),
                 GestureDetector(
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context){
-                      return RecitersScreen();
-                    }));
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return RecitersScreen();
+                        },
+                      ),
+                    );
                   },
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 6,
+                      vertical: 2,
+                    ),
                     decoration: BoxDecoration(
                       color: Color(0xBFB9B9BB),
                       borderRadius: BorderRadius.circular(6),
@@ -328,61 +366,60 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-          // TitleWidget(
-          //   textLeft: "Quran reciters",
-          //   colorLeft: Color(0xFF242424),
-          //   leftSize: 26,
-          //   textRight: "view all",
-          //   colorRight: Color(0xFF0469FF),
-          //   rightSize: 16,
-          // ),
           Container(
-            height: 148,
+            height: 141,
             child: ListView.builder(
-                padding: EdgeInsets.symmetric(horizontal: 24),
-                scrollDirection: Axis.horizontal,
-                itemCount: 4,
-                itemBuilder: (context, value) {
-                  return Container(
-                    margin: EdgeInsets.only(right: 12, top: 8),
-                    child: Stack(
-                      children: [
-                        Container(
-                            margin: EdgeInsets.only(top: 18),
-                            height: 98,
-                            width: 252,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              color: Color(0xFFCDCDCD),
+              padding: EdgeInsets.symmetric(horizontal: 24),
+              scrollDirection: Axis.horizontal,
+              itemCount: 4,
+              itemBuilder: (context, value) {
+                return Container(
+                  width: 252,
+                  margin: EdgeInsets.only(right: 16),
+                  child: Stack(
+                    children: [
+                      Align(
+                        child: Container(
+                          height: 98,
+                          width: 252,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: Color(0xFFCDCDCD),
+                          ),
+                          padding: EdgeInsets.only(
+                            top: 12,
+                            bottom: 12,
+                            left: 116,
+                            right: 12,
+                          ),
+                          child: Text(
+                            dataProfile[value].name,
+                            maxLines: 2,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 23,
+                              letterSpacing: 0.2,
                             ),
-                            child: Row(
-                              children: [
-                                Spacer(),
-                                Container(
-                                  width: 140,
-                                  height: 80,
-                                  child: Text(
-                                    dataProfil[value].name,
-                                    maxLines: 2,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 18,
-                                      letterSpacing: 0.2,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            )),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: Image.asset(
-                            dataProfil[value].image,
                           ),
                         ),
-                      ],
-                    ),
-                  );
-                }),
+                        alignment: Alignment.bottomCenter,
+                      ),
+                      ClipRRect(
+                        child: Image.asset(
+                          dataProfile[value].image,
+                          height: 141,
+                          width: 104,
+                          fit: BoxFit.cover,
+                        ),
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(8),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
           )
         ],
       ),

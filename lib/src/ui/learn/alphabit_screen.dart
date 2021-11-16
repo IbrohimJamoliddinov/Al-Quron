@@ -127,7 +127,7 @@ class _AlphabitScreenState extends State<AlphabitScreen> {
             child: Row(
               children: [
                 SvgPicture.asset(
-                  "assets/icons/chevronLeft.svg",
+                  "assets/icons/arrow_left_bold.svg",
                 ),
                 SizedBox(
                   width: 8,

@@ -29,7 +29,7 @@ class _InsideReadScreenState extends State<InsideReadScreen> {
           padding: EdgeInsets.only(left: 8),
           child: Row(
             children: [
-              SvgPicture.asset("assets/icons/chevronLeft.svg"),
+              SvgPicture.asset("assets/icons/arrow_left_bold.svg"),
               SizedBox(
                 width: 4,
               ),
