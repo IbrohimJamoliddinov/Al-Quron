@@ -676,7 +676,9 @@ class _QuranItemScreenState extends State<QuranItemScreen>
                             ),
                             SizedBox(width: 4),
                             GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                BottomDialog.showSettingsDialog(context);
+                              },
                               child: SvgPicture.asset(
                                 "assets/icons/player_settings.svg",
                               ),

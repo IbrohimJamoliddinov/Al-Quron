@@ -38,7 +38,7 @@ class _MoreScreenState extends State<MoreScreen> {
                 actions: [
                   GestureDetector(
                     onTap: () {
-                      BottomDialog.showSettingsDialog(context);
+
                     },
                     child: Container(
                       margin: EdgeInsets.only(right: 16),

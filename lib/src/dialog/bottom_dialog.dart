@@ -59,7 +59,7 @@ class BottomDialog {
                   ),
                   Expanded(
                     child: ListView(
-                      shrinkWrap: true,
+                      padding: EdgeInsets.zero,
                       children: [
                         TextSwitch(
                           paddingBox: EdgeInsets.symmetric(
@@ -77,22 +77,17 @@ class BottomDialog {
                             });
                           },
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: 260,
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 24, vertical: 6),
-                              child: Text(
-                                "Tajweed rules will appear on ayahs of surahs while using it",
-                                maxLines: 2,
-                                style: TextStyle(
-                                  color: AppTheme.textColorGrey,
-                                ),
-                              ),
+                        Container(
+                          margin: EdgeInsets.symmetric(
+                            horizontal: 24,
+                            vertical: 6,
+                          ),
+                          child: Text(
+                            "Tajweed rules will appear on ayahs of surahs while using it",
+                            style: TextStyle(
+                              color: AppTheme.textColorGrey,
                             ),
-                          ],
+                          ),
                         ),
                         TextSwitch(
                           paddingBox: EdgeInsets.symmetric(
@@ -102,7 +97,7 @@ class BottomDialog {
                           status: statusTwo,
                           boxBorderRadius: BorderRadius.circular(12),
                           marginBox:
-                              EdgeInsets.only(left: 24, right: 24, top: 16),
+                              EdgeInsets.only(left: 24, right: 24, top: 10),
                           boxColor: Color(0xFFD2D2D2),
                           text: "Tajweed panel",
                           selected: (bool selected) {
@@ -111,26 +106,19 @@ class BottomDialog {
                             });
                           },
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width - 48,
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 24, vertical: 6),
-                              child: Text(
-                                  "Tajweed rules guide will appear on fixed panel",
-                                  maxLines: 2,
-                                  style: TextStyle(
-                                    color: AppTheme.textColorGrey,
-                                  )),
+                        Container(
+                          margin:
+                              EdgeInsets.symmetric(horizontal: 24, vertical: 6),
+                          child: Text(
+                            "Tajweed rules guide will appear on fixed panel",
+                            style: TextStyle(
+                              color: AppTheme.textColorGrey,
                             ),
-                          ],
+                          ),
                         ),
                         Container(
                           height: 1,
-                          width: MediaQuery.of(context).size.width - 48,
-                          margin: EdgeInsets.only(left: 24, right: 24, top: 16),
+                          margin: EdgeInsets.only(left: 24, right: 24, top: 10),
                           color: Color(0xFFDBDBDB),
                         ),
                         SizedBox(
@@ -152,21 +140,17 @@ class BottomDialog {
                             });
                           },
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: 260,
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 24, vertical: 6),
-                              child: Text(
-                                  "When next or previous button pressed it will go ayah by ayah",
-                                  maxLines: 2,
-                                  style: TextStyle(
-                                    color: AppTheme.textColorGrey,
-                                  )),
+                        Container(
+                          margin: EdgeInsets.symmetric(
+                            horizontal: 24,
+                            vertical: 6,
+                          ),
+                          child: Text(
+                            "When next or previous button pressed it will go ayah by ayah",
+                            style: TextStyle(
+                              color: AppTheme.textColorGrey,
                             ),
-                          ],
+                          ),
                         ),
                         TextSwitch(
                           paddingBox: EdgeInsets.symmetric(
@@ -176,7 +160,7 @@ class BottomDialog {
                           status: statusFou,
                           boxBorderRadius: BorderRadius.circular(12),
                           marginBox:
-                              EdgeInsets.only(left: 24, right: 24, top: 16),
+                              EdgeInsets.only(left: 24, right: 24, top: 10),
                           boxColor: Color(0xFFD2D2D2),
                           text: "Stop end of the surah",
                           selected: (bool selected) {
@@ -185,26 +169,35 @@ class BottomDialog {
                             });
                           },
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width - 48,
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 24, vertical: 6),
-                              child: Text("When surah ends track stops also",
-                                  maxLines: 2,
-                                  style: TextStyle(
-                                    color: AppTheme.textColorGrey,
-                                  )),
+                        Container(
+                          margin:
+                              EdgeInsets.symmetric(horizontal: 24, vertical: 6),
+                          child: Text(
+                            "When surah ends track stops also",
+                            style: TextStyle(
+                              color: AppTheme.textColorGrey,
                             ),
-                          ],
+                          ),
                         ),
                         Container(
                           height: 1,
-                          width: MediaQuery.of(context).size.width - 48,
-                          margin: EdgeInsets.only(left: 24, right: 24, top: 16),
+                          margin: EdgeInsets.only(
+                            left: 24,
+                            right: 24,
+                            top: 10,
+                            bottom: 14,
+                          ),
                           color: Color(0xFFDBDBDB),
+                        ),
+                        Container(
+                          margin:
+                              EdgeInsets.symmetric(horizontal: 24, vertical: 6),
+                          child: Text(
+                            "Text size",
+                            style: TextStyle(
+                              color: AppTheme.textColorGrey,
+                            ),
+                          ),
                         ),
                         Container(
                           margin: EdgeInsets.symmetric(horizontal: 24),
@@ -229,7 +222,7 @@ class BottomDialog {
                               value: _currentSliderValue,
                               min: 0,
                               max: 100,
-                              divisions: 7,
+                              divisions: 10,
                               label: _currentSliderValue.round().toString(),
                               onChanged: (double value) {
                                 setState(() {
@@ -239,36 +232,51 @@ class BottomDialog {
                             ),
                           ),
                         ),
-                        GestureDetector(
-                          onTap: () {},
-                          child: Container(
-                            width: MediaQuery.of(context).size.width - 48,
-                            margin: EdgeInsets.only(
-                                left: 24, right: 24, top: 14, bottom: 16),
-                            decoration: BoxDecoration(
-                              color: Color(0xFFDFDFDF),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            padding: EdgeInsets.only(left: 18, bottom: 12),
-                            child: Column(
-                              children: [
-                                SizedBox(height: 68),
-                                Row(
-                                  children: [
-                                    Text(
-                                      "Mehribon va rahmli Alloh nomi ila boshlayman",
-                                      maxLines: 2,
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
-                                        letterSpacing: 0.2,
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
+                        Container(
+                          margin: EdgeInsets.only(
+                            left: 24,
+                            right: 24,
+                            top: 14,
+                            bottom: 16,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Color(0xFFDFDFDF),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          padding: EdgeInsets.only(
+                            left: 18,
+                            right: 18,
+                            bottom: 12,
+                            top: 31,
+                          ),
+                          child: Column(
+                            children: [
+                              Container(
+                                child: Text(
+                                  "ِميِحَّرلا ِنٰـَمْحَّرلا ِهَّللا ِمْسِب",
+                                  textAlign: TextAlign.end,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 26,
+                                    height: 0.54,
+                                    fontWeight: FontWeight.w500,
+                                    letterSpacing: 0.2,
+                                  ),
+                                ),
+                                alignment: Alignment.centerRight,
+                              ),
+                              SizedBox(height: 24),
+                              Text(
+                                "Mehribon va rahmli Alloh nomi ila boshlayman",
+                                maxLines: 2,
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: 0.2,
+                                ),
+                              ),
+                            ],
                           ),
                         )
                       ],
