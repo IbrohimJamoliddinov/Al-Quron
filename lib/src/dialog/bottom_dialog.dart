@@ -1,5 +1,4 @@
 import 'package:al_quran/src/models/language_model.dart';
-import 'package:al_quran/src/models/remove_language.dart';
 import 'package:al_quran/src/utils/app_theme.dart';
 import 'package:al_quran/src/widgets/text_switch.dart';
 import 'package:flutter/cupertino.dart';
@@ -287,7 +286,7 @@ class BottomDialog {
   }
 
   static void showSettingLanguage(BuildContext context) {
-    List<LanguageModel> data = [
+    List<LanguageModel> download = [
       LanguageModel(
         language: "Russian",
         name: "Hasan Efendi Nahi",
@@ -302,35 +301,34 @@ class BottomDialog {
       ),
     ];
 
-    List<RemoveLanguage> dataRemove = [
-      RemoveLanguage(
+    List<LanguageModel> language = [
+      LanguageModel(
         language: "Uzbek",
         name: "Hasan Efendi Nahi",
       ),
-      RemoveLanguage(
+      LanguageModel(
         language: "nemis",
         name: "Hasan Efendi Nahi",
       ),
-      RemoveLanguage(
+      LanguageModel(
         language: "tojik",
         name: "Hasan Efendi Nahi",
       ),
-      RemoveLanguage(
+      LanguageModel(
         language: "fransuz",
         name: "Hasan Efendi Nahi",
       )
     ];
 
-    int _selectedDelete = 1;
     int _selectedIndex = 1;
-    bool status = true;
+    bool isTranslate = true;
     CupertinoScaffold.showCupertinoModalBottomSheet(
       context: context,
       builder: (context) {
         return StatefulBuilder(
           builder: (context, setState) {
             return Scaffold(
-              backgroundColor: Color(0xFFDCDCDC),
+              backgroundColor: Color(0xFFF6F6F6),
               body: Column(
                 children: [
                   Container(
@@ -367,13 +365,16 @@ class BottomDialog {
                     ),
                   ),
                   Container(
-                    color: Color(0xFFDCDCDC),
-                    padding: EdgeInsets.only(left: 24.0, right: 24, bottom: 10),
+                    color: Colors.transparent,
+                    padding: EdgeInsets.only(left: 24.0, right: 24),
                     child: Container(
                       height: 40,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                         color: Color(0xFFEBEBEB),
+                        border: Border.all(
+                          color: Color(0xFFDFDFDF),
+                        ),
                       ),
                       child: Row(
                         children: [
@@ -411,6 +412,7 @@ class BottomDialog {
                   ),
                   Expanded(
                     child: ListView(
+                      padding: EdgeInsets.zero,
                       children: [
                         Container(
                           margin: EdgeInsets.only(
@@ -450,6 +452,7 @@ class BottomDialog {
                                           fontSize: 16,
                                           fontWeight: FontWeight.w400,
                                           letterSpacing: 0.2,
+                                          height: 1.2,
                                           fontFamily: AppTheme.fontPoppins,
                                           color: Color(0xFF3D3D3D),
                                         ),
@@ -457,7 +460,7 @@ class BottomDialog {
                                       Text(
                                         "Default",
                                         style: TextStyle(
-                                          fontSize: 14,
+                                          fontSize: 15,
                                           fontWeight: FontWeight.w400,
                                           letterSpacing: 0.2,
                                           fontFamily: AppTheme.fontPoppins,
@@ -467,6 +470,11 @@ class BottomDialog {
                                     ],
                                   )
                                 ],
+                              ),
+                              Container(
+                                margin: EdgeInsets.symmetric(vertical: 6),
+                                height: 1,
+                                color: Color(0xFFDBDBDB),
                               ),
                               Row(
                                 children: [
@@ -480,19 +488,22 @@ class BottomDialog {
                                     ),
                                   ),
                                   Spacer(),
-                                  Container(
-                                    width: 52,
-                                    height: 32,
-                                    // child: FlutterSwitch(
-                                    //   width: 52,
-                                    //   height: 32,
-                                    //   toggleSize: 27.0,
-                                    //   value: status,
-                                    //   borderRadius: 16.0,
-                                    //   activeColor: Colors.green,
-                                    //   onToggle: (value) {},
-                                    // ),
+                                  GestureDetector(
+                                    child: CupertinoSwitch(
+                                      value: isTranslate,
+                                      onChanged: (bool value) {
+                                        setState(() {
+                                          isTranslate = value;
+                                        });
+                                      },
+                                    ),
+                                    onTap: () {
+                                      setState(() {
+                                        isTranslate = !isTranslate;
+                                      });
+                                    },
                                   ),
+                                  SizedBox(width: 12),
                                 ],
                               ),
                             ],
@@ -500,15 +511,30 @@ class BottomDialog {
                         ),
                         Container(
                           height: 1,
-                          width: MediaQuery.of(context).size.width - 48,
-                          margin: EdgeInsets.only(left: 24, right: 24, top: 20),
-                          color: Color(0xFFA7A7A7),
+                          margin: EdgeInsets.only(
+                            left: 24,
+                            right: 24,
+                            top: 20,
+                            bottom: 20,
+                          ),
+                          color: Color(0xFFA7A7A7).withOpacity(0.5),
                         ),
                         Container(
-                          height: 172,
-                          margin: EdgeInsets.only(left: 24, right: 24, top: 20),
+                          margin: EdgeInsets.only(left: 24, right: 24),
+                          child: Text(
+                            "Downloaded",
+                            style: TextStyle(
+                              fontFamily: AppTheme.fontPoppins,
+                              fontSize: 15,
+                              color: Color(0xFF717171),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 24, right: 24, top: 6),
                           padding: EdgeInsets.only(
-                              left: 16, top: 12, right: 16, bottom: 10),
+                            left: 16,
+                          ),
                           decoration: BoxDecoration(
                             color: Color(0xFFD2D2D2),
                             borderRadius: BorderRadius.circular(12),
@@ -516,75 +542,120 @@ class BottomDialog {
                           child: ListView.builder(
                             shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),
-                            itemCount: data.length,
+                            itemCount: download.length,
+                            padding: EdgeInsets.zero,
                             itemBuilder: (context, index) {
-                              return GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    _selectedIndex = index;
-                                  });
-                                },
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      width: 32,
-                                      height: 32,
-                                      margin: EdgeInsets.only(right: 10),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(16),
-                                        color: Color(0xFFC0C0C0),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                              return Column(
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        _selectedIndex = index;
+                                      });
+                                    },
+                                    child: Container(
+                                      color: Colors.transparent,
+                                      child: Row(
                                         children: [
-                                          Text(
-                                            data[index].language,
-                                            style: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w400,
-                                              letterSpacing: 0.2,
-                                              fontFamily: AppTheme.fontPoppins,
-                                              color: Color(0xFF3D3D3D),
+                                          Container(
+                                            width: 32,
+                                            height: 32,
+                                            margin: EdgeInsets.only(right: 10),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(16),
+                                              color: Color(0xFFC0C0C0),
                                             ),
                                           ),
-                                          Text(
-                                            data[index].name,
-                                            style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w400,
-                                              letterSpacing: 0.2,
-                                              fontFamily: AppTheme.fontPoppins,
-                                              color: Color(0xFF989898),
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  download[index].language,
+                                                  style: TextStyle(
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w400,
+                                                    letterSpacing: 0.2,
+                                                    fontFamily:
+                                                        AppTheme.fontPoppins,
+                                                    color: Color(0xFF3D3D3D),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  download[index].name,
+                                                  style: TextStyle(
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w400,
+                                                    letterSpacing: 0.2,
+                                                    fontFamily:
+                                                        AppTheme.fontPoppins,
+                                                    color: Color(0xFF989898),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
+                                          ),
+                                          _selectedIndex == index
+                                              ? SvgPicture.asset(
+                                                  "assets/icons/checkmark.svg",
+                                                )
+                                              : Container(),
+                                          SizedBox(
+                                            width: 8,
+                                          ),
+                                          SvgPicture.asset(
+                                            "assets/icons/trash.svg",
+                                          ),
+                                          SizedBox(
+                                            width: 16,
                                           ),
                                         ],
                                       ),
+                                      padding: EdgeInsets.only(
+                                        top: 11,
+                                        bottom: 7,
+                                      ),
                                     ),
-                                    _selectedIndex == index
-                                        ? SvgPicture.asset(
-                                            "assets/icons/checkmark.svg",
-                                          )
-                                        : Container(),
-                                    SizedBox(
-                                      width: 8,
-                                    ),
-                                    SvgPicture.asset(
-                                      "assets/icons/trash.svg",
-                                    )
-                                  ],
-                                ),
+                                  ),
+                                  index != download.length - 1
+                                      ? Container(
+                                          height: 1,
+                                          color: Color(0xFFDBDBDB),
+                                        )
+                                      : Container()
+                                ],
                               );
                             },
                           ),
                         ),
                         Container(
-                          height: 172,
-                          margin: EdgeInsets.only(left: 24, right: 24, top: 20),
+                          height: 1,
+                          margin: EdgeInsets.only(
+                            left: 24,
+                            right: 24,
+                            top: 20,
+                            bottom: 20,
+                          ),
+                          color: Color(0xFFA7A7A7).withOpacity(0.5),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 24, right: 24),
+                          child: Text(
+                            "Languages",
+                            style: TextStyle(
+                              fontFamily: AppTheme.fontPoppins,
+                              fontSize: 15,
+                              color: Color(0xFF717171),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 24, right: 24, top: 6),
                           padding: EdgeInsets.only(
-                              left: 16, top: 12, right: 16, bottom: 10),
+                            left: 16,
+                          ),
                           decoration: BoxDecoration(
                             color: Color(0xFFD2D2D2),
                             borderRadius: BorderRadius.circular(12),
@@ -592,59 +663,77 @@ class BottomDialog {
                           child: ListView.builder(
                             shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),
-                            itemCount: data.length,
+                            itemCount: language.length,
+                            padding: EdgeInsets.zero,
                             itemBuilder: (context, index) {
-                              return GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    _selectedDelete = index;
-                                  });
-                                },
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      width: 32,
-                                      height: 32,
-                                      margin: EdgeInsets.only(right: 10),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(16),
-                                        color: Color(0xFFC0C0C0),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            dataRemove[index].language,
-                                            style: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w400,
-                                              letterSpacing: 0.2,
-                                              fontFamily: AppTheme.fontPoppins,
-                                              color: Color(0xFF3D3D3D),
-                                            ),
+                              return Column(
+                                children: [
+                                  Container(
+                                    color: Colors.transparent,
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          width: 32,
+                                          height: 32,
+                                          margin: EdgeInsets.only(right: 10),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(16),
+                                            color: Color(0xFFC0C0C0),
                                           ),
-                                          Text(
-                                            dataRemove[index].name,
-                                            style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w400,
-                                              letterSpacing: 0.2,
-                                              fontFamily: AppTheme.fontPoppins,
-                                              color: Color(0xFF989898),
-                                            ),
+                                        ),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                language[index].language,
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w400,
+                                                  letterSpacing: 0.2,
+                                                  fontFamily:
+                                                      AppTheme.fontPoppins,
+                                                  color: Color(0xFF3D3D3D),
+                                                ),
+                                              ),
+                                              Text(
+                                                language[index].name,
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w400,
+                                                  letterSpacing: 0.2,
+                                                  fontFamily:
+                                                      AppTheme.fontPoppins,
+                                                  color: Color(0xFF989898),
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                        SvgPicture.asset(
+                                          "assets/icons/cloud.svg",
+                                        ),
+                                        SizedBox(
+                                          width: 16,
+                                        ),
+                                      ],
                                     ),
-                                    SvgPicture.asset(
-                                      "assets/icons/dowloud.svg",
-                                    )
-                                  ],
-                                ),
+                                    padding: EdgeInsets.only(
+                                      top: 11,
+                                      bottom: 7,
+                                    ),
+                                  ),
+                                  index != language.length - 1
+                                      ? Container(
+                                          height: 1,
+                                          color: Color(0xFFDBDBDB),
+                                        )
+                                      : Container()
+                                ],
                               );
+                              ;
                             },
                           ),
                         ),
