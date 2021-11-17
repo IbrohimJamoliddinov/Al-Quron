@@ -45,5 +45,8 @@
     <string>This app needs access to location when open.</string>
     <key>NSLocationAlwaysUsageDescription</key>
     <string>This app needs access to location when in the background.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>explain why the app uses the microphone here </string>
+
 </dict>
 </plist>
