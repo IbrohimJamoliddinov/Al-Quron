@@ -654,24 +654,31 @@ class _QuranItemScreenState extends State<QuranItemScreen>
                             ),
                             SizedBox(width: 4),
                             Expanded(
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "Mishary Rashid",
-                                    style: TextStyle(
-                                      fontFamily: AppTheme.fontPoppins,
-                                      fontSize: 16,
-                                      color: Color(0xFF767676),
-                                    ),
+                              child: GestureDetector(
+                                onTap: (){
+                                  BottomDialog.showReciterDialog(context);
+                                },
+                                child: Container(
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "Mishary Rashid",
+                                        style: TextStyle(
+                                          fontFamily: AppTheme.fontPoppins,
+                                          fontSize: 16,
+                                          color: Color(0xFF767676),
+                                        ),
+                                      ),
+                                      SizedBox(width: 8),
+                                      Icon(
+                                        Icons.arrow_drop_up,
+                                        color: Color(0xFF767676),
+                                      )
+                                    ],
                                   ),
-                                  SizedBox(width: 8),
-                                  Icon(
-                                    Icons.arrow_drop_up,
-                                    color: Color(0xFF767676),
-                                  )
-                                ],
+                                ),
                               ),
                             ),
                             SizedBox(width: 4),

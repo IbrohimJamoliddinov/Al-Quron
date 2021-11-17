@@ -1105,4 +1105,373 @@ class BottomDialog {
       },
     );
   }
+
+  static void showReciterDialog(BuildContext context) {
+    List<LanguageModel> download = [
+      LanguageModel(
+        language: "Mishary Rashid",
+        name: "Hasan Efendi Nahi",
+      ),
+      LanguageModel(
+        language: "Maheer al-Mueaqly",
+        name: "Hasan Efendi Nahi",
+      ),
+      LanguageModel(
+        language: "Raad al-Kurdi",
+        name: "Hasan Efendi Nahi",
+      ),
+    ];
+
+    List<LanguageModel> all = [
+      LanguageModel(
+        language: "Albanian ",
+        name: "Hasan Efendi Nahi",
+      ),
+      LanguageModel(
+        language: "Amazigh ",
+        name: "Hasan Efendi Nahi",
+      ),
+      LanguageModel(
+        language: "Arabic ",
+        name: "Hasan Efendi Nahi",
+      ),
+      LanguageModel(
+        language: "fransuz",
+        name: "Hasan Efendi Nahi",
+      ),
+      LanguageModel(
+        language: "Azerbaijani ",
+        name: "Hasan Efendi Nahi",
+      )
+    ];
+
+    int _selectedIndex = 1;
+    CupertinoScaffold.showCupertinoModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return Scaffold(
+              backgroundColor: Color(0xFFF6F6F6),
+              body: Column(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(top: 20, bottom: 16),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 62,
+                        ),
+                        Expanded(
+                          child: Text(
+                            "Reciter list",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 18,
+                              decoration: TextDecoration.none,
+                              fontFamily: AppTheme.fontPoppins,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: -0.41,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(right: 16),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            child: SvgPicture.asset("assets/icons/close.svg"),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    color: Colors.transparent,
+                    padding: EdgeInsets.only(left: 24.0, right: 24),
+                    child: Container(
+                      height: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: Color(0xFFEBEBEB),
+                        border: Border.all(
+                          color: Color(0xFFDFDFDF),
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: 8,
+                          ),
+                          SvgPicture.asset(
+                            "assets/icons/search.svg",
+                          ),
+                          SizedBox(
+                            width: 8,
+                          ),
+                          Expanded(
+                            child: TextField(
+                              autofocus: false,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                                enabledBorder: InputBorder.none,
+                                errorBorder: InputBorder.none,
+                                disabledBorder: InputBorder.none,
+                                hintText: "Search reciters...",
+                                hintStyle: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 16,
+                                  letterSpacing: -0.41,
+                                  color: Color(0xFF808078),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: ListView(
+                      padding: EdgeInsets.zero,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(
+                            left: 24,
+                            right: 24,
+                            top: 20,
+                          ),
+                          child: Text(
+                            "Downloaded",
+                            style: TextStyle(
+                              fontFamily: AppTheme.fontPoppins,
+                              fontSize: 15,
+                              color: Color(0xFF717171),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 24, right: 24, top: 6),
+                          padding: EdgeInsets.only(
+                            left: 16,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Color(0xFFD2D2D2),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: download.length,
+                            padding: EdgeInsets.zero,
+                            itemBuilder: (context, index) {
+                              return Column(
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        _selectedIndex = index;
+                                      });
+                                    },
+                                    child: Container(
+                                      color: Colors.transparent,
+                                      child: Row(
+                                        children: [
+                                          Container(
+                                            width: 32,
+                                            height: 32,
+                                            margin: EdgeInsets.only(right: 10),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(16),
+                                              color: Color(0xFFC0C0C0),
+                                            ),
+                                            child: Image.asset(
+                                              "assets/images/person.png",
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  download[index].language,
+                                                  style: TextStyle(
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w400,
+                                                    letterSpacing: 0.2,
+                                                    fontFamily:
+                                                        AppTheme.fontPoppins,
+                                                    color: Color(0xFF3D3D3D),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  download[index].name,
+                                                  style: TextStyle(
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w400,
+                                                    letterSpacing: 0.2,
+                                                    fontFamily:
+                                                        AppTheme.fontPoppins,
+                                                    color: Color(0xFF989898),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          _selectedIndex == index
+                                              ? SvgPicture.asset(
+                                                  "assets/icons/checkmark.svg",
+                                                )
+                                              : Container(),
+                                          SizedBox(
+                                            width: 8,
+                                          ),
+                                          SvgPicture.asset(
+                                            "assets/icons/trash.svg",
+                                          ),
+                                          SizedBox(
+                                            width: 16,
+                                          ),
+                                        ],
+                                      ),
+                                      padding: EdgeInsets.only(
+                                        top: 11,
+                                        bottom: 7,
+                                      ),
+                                    ),
+                                  ),
+                                  index != download.length - 1
+                                      ? Container(
+                                          height: 1,
+                                          color: Color(0xFFDBDBDB),
+                                        )
+                                      : Container()
+                                ],
+                              );
+                            },
+                          ),
+                        ),
+                        Container(
+                          height: 1,
+                          margin: EdgeInsets.only(
+                            left: 24,
+                            right: 24,
+                            top: 20,
+                            bottom: 20,
+                          ),
+                          color: Color(0xFFA7A7A7).withOpacity(0.5),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 24, right: 24),
+                          child: Text(
+                            "Reciters",
+                            style: TextStyle(
+                              fontFamily: AppTheme.fontPoppins,
+                              fontSize: 15,
+                              color: Color(0xFF717171),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 24, right: 24, top: 6),
+                          padding: EdgeInsets.only(
+                            left: 16,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Color(0xFFD2D2D2),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: all.length,
+                            padding: EdgeInsets.zero,
+                            itemBuilder: (context, index) {
+                              return Column(
+                                children: [
+                                  Container(
+                                    color: Colors.transparent,
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          width: 32,
+                                          height: 32,
+                                          margin: EdgeInsets.only(right: 10),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(16),
+                                            color: Color(0xFFC0C0C0),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                all[index].language,
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w400,
+                                                  letterSpacing: 0.2,
+                                                  fontFamily:
+                                                      AppTheme.fontPoppins,
+                                                  color: Color(0xFF3D3D3D),
+                                                ),
+                                              ),
+                                              Text(
+                                                all[index].name,
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w400,
+                                                  letterSpacing: 0.2,
+                                                  fontFamily:
+                                                      AppTheme.fontPoppins,
+                                                  color: Color(0xFF989898),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        SvgPicture.asset(
+                                          "assets/icons/cloud.svg",
+                                        ),
+                                        SizedBox(
+                                          width: 16,
+                                        ),
+                                      ],
+                                    ),
+                                    padding: EdgeInsets.only(
+                                      top: 11,
+                                      bottom: 7,
+                                    ),
+                                  ),
+                                  index != all.length - 1
+                                      ? Container(
+                                          height: 1,
+                                          color: Color(0xFFDBDBDB),
+                                        )
+                                      : Container()
+                                ],
+                              );
+                              ;
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
 }

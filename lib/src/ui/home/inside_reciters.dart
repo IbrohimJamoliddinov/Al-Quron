@@ -1,5 +1,7 @@
 import 'package:al_quran/src/models/surah_model.dart';
+import 'package:al_quran/src/ui/quran/quran_item_screen.dart';
 import 'package:al_quran/src/utils/app_theme.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -377,78 +379,95 @@ class _InsideScreenState extends State<InsideScreen> {
                       itemCount: data.length,
                       padding: EdgeInsets.only(top: 4),
                       itemBuilder: (context, index) {
-                        return Column(
-                          children: [
-                            SizedBox(height: 12),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              CupertinoPageRoute(
+                                builder: (context) {
+                                  return QuranItemScreen(
+                                    title: data[index].surahName,
+                                  );
+                                },
+                              ),
+                            );
+                          },
+                          child: Container(
+                            color: Colors.transparent,
+                            child: Column(
                               children: [
-                                SizedBox(
-                                  width: 12,
-                                ),
-                                Text(
-                                  (index + 1).toString(),
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                    letterSpacing: 0.16,
-                                  ),
-                                ),
-                                SizedBox(width: 14),
-                                Expanded(
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        data[index].surahName,
-                                        style: TextStyle(
-                                          color: Color(0xFF575757),
-                                          fontSize: 18,
-                                          letterSpacing: 0.2,
-                                          fontWeight: FontWeight.w600,
-                                        ),
+                                SizedBox(height: 12),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SizedBox(
+                                      width: 12,
+                                    ),
+                                    Text(
+                                      (index + 1).toString(),
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                        letterSpacing: 0.16,
                                       ),
-                                      SizedBox(height: 3),
-                                      Text(
-                                        data[index].ayahMor,
-                                        style: TextStyle(
-                                          color: Color(0xFF888888),
-                                          fontSize: 16,
-                                          letterSpacing: 0.2,
-                                          fontWeight: FontWeight.w400,
+                                    ),
+                                    SizedBox(width: 14),
+                                    Expanded(
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            data[index].surahName,
+                                            style: TextStyle(
+                                              color: Color(0xFF575757),
+                                              fontSize: 18,
+                                              letterSpacing: 0.2,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          SizedBox(height: 3),
+                                          Text(
+                                            data[index].ayahMor,
+                                            style: TextStyle(
+                                              color: Color(0xFF888888),
+                                              fontSize: 16,
+                                              letterSpacing: 0.2,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          )
+                                        ],
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                      ),
+                                    ),
+                                    SvgPicture.asset(
+                                      "assets/icons/cloud.svg",
+                                    ),
+                                    SizedBox(
+                                      width: 8,
+                                    ),
+                                    SvgPicture.asset(
+                                      "assets/icons/more_horizontal.svg",
+                                    ),
+                                    SizedBox(
+                                      width: 22,
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 7),
+                                index == data.length - 1
+                                    ? Container()
+                                    : Container(
+                                        margin: EdgeInsets.only(
+                                          left: 34,
                                         ),
-                                      )
-                                    ],
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                  ),
-                                ),
-                                SvgPicture.asset(
-                                  "assets/icons/cloud.svg",
-                                ),
-                                SizedBox(
-                                  width: 8,
-                                ),
-                                SvgPicture.asset(
-                                  "assets/icons/more_horizontal.svg",
-                                ),
-                                SizedBox(
-                                  width: 22,
-                                ),
+                                        height: 1,
+                                        color: Color(0xFFCCCCCC),
+                                      ),
                               ],
                             ),
-                            SizedBox(height: 7),
-                            index == data.length - 1
-                                ? Container()
-                                : Container(
-                                    margin: EdgeInsets.only(
-                                      left: 34,
-                                    ),
-                                    height: 1,
-                                    color: Color(0xFFCCCCCC),
-                                  ),
-                          ],
+                          ),
                         );
                       },
                     ),
