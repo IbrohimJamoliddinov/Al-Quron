@@ -116,34 +116,36 @@ class _AlphabitScreenState extends State<AlphabitScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leadingWidth: 98,
+        backgroundColor: Color(0xFFDCDCDC),
         elevation: 0,
-        leadingWidth: 120,
-        backgroundColor: AppTheme.dadada,
+        centerTitle: true,
         leading: GestureDetector(
-          onTap: (){
+          onTap: () {
             Navigator.pop(context);
           },
           child: Container(
             child: Row(
               children: [
+                SizedBox(
+                  width: 16,
+                ),
                 SvgPicture.asset(
                   "assets/icons/arrow_left_bold.svg",
+                  height: 18,
                 ),
-                SizedBox(
-                  width: 8,
-                ),
+                SizedBox(width: 5),
                 Text(
                   "Back",
                   style: TextStyle(
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 17,
                     color: Color(0xFF3A3A3C),
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16,
+                    letterSpacing: -0.41,
                   ),
                 ),
               ],
             ),
-            padding: EdgeInsets.only(left: 16),
           ),
         ),
         title: Text(
@@ -167,7 +169,6 @@ class _AlphabitScreenState extends State<AlphabitScreen> {
       body: Column(
         children: [
           Container(
-            width: MediaQuery.of(context).size.width,
             padding: EdgeInsets.only(
               top: 40,
               right: 46,
@@ -177,14 +178,15 @@ class _AlphabitScreenState extends State<AlphabitScreen> {
             height: 165,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(40),
-                bottomRight: Radius.circular(40),
+                bottomLeft: Radius.circular(48),
+                bottomRight: Radius.circular(48),
               ),
-              color: AppTheme.dadada,
+              color: Color(0xFFDCDCDC),
             ),
             child: Center(
               child: Text(
                 "Start learning Arabic with AI technology",
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   fontStyle: FontStyle.normal,
                   fontWeight: FontWeight.w600,
@@ -195,95 +197,95 @@ class _AlphabitScreenState extends State<AlphabitScreen> {
             ),
           ),
           Expanded(
-              child: ListView(
-            children: [
-              ListView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: letters.length,
-                itemBuilder: (context, index) {
+            child: ListView.builder(
+              itemCount: letters.length,
+              itemBuilder: (context, index) {
+                if (index == 0) {
                   return Container(
-                      margin: EdgeInsets.only(top: 16, left: 22, right: 22),
-                      padding: EdgeInsets.all(14),
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: Color(0xFFE2E2E2),
+                    margin: EdgeInsets.only(left: 22, right: 22, top: 30),
+                    child: Text(
+                      "Arabic letters",
+                      style: TextStyle(
+                        fontFamily: AppTheme.fontPoppins,
+                        fontSize: 22,
+                        fontWeight: FontWeight.w600,
+                        height: 26 / 22,
+                        color: Color(0xFF242424),
                       ),
-                      height: 90,
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              Container(
-                                width: 61,
-                                height: 61,
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFA1A1A1),
-                                  borderRadius: BorderRadius.circular(11),
-                                ),
+                    ),
+                  );
+                }
+                return Container(
+                  margin: EdgeInsets.only(top: 16, left: 22, right: 22),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 14,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Color(0xFFDCDCDC),
+                  ),
+                  height: 90,
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 61,
+                        height: 61,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFA1A1A1),
+                          borderRadius: BorderRadius.circular(11),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 18,
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              letters[index].name,
+                              style: TextStyle(
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 17,
+                                height: 1.18,
+                                letterSpacing: 0.2,
+                                color: AppTheme.black,
                               ),
-                              SizedBox(
-                                width: 18,
+                            ),
+                            SizedBox(height: 4),
+                            Text(
+                              letters[index].part +
+                                  " / " +
+                                  letters[index].exercise,
+                              style: TextStyle(
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 15,
+                                letterSpacing: 0.2,
+                                color: Color(0xFF939393),
                               ),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      letters[index].name,
-                                      style: TextStyle(
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 17,
-                                        letterSpacing: 0.2,
-                                        color: AppTheme.black,
-                                      ),
-                                    ),
-                                    Row(children: [
-                                      Text(
-                                        letters[index].part + "/",
-                                        style: TextStyle(
-                                          fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 15,
-                                          letterSpacing: 0.2,
-                                          color: Color(0xFF939393),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 4,
-                                      ),
-                                      Text(
-                                        letters[index].exercise,
-                                        style: TextStyle(
-                                          fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 15,
-                                          letterSpacing: 0.2,
-                                          color: Color(0xFF939393),
-                                        ),
-                                      ),
-                                    ]),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                width: 40,
-                                height: 40,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Color(0xFFA1A1A1),
-                                ),
-                              )
-                            ],
-                          ),
-                        ],
-                      ));
-                },
-              ),
-            ],
-          )),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Color(0xFFA1A1A1),
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
         ],
       ),
     );
