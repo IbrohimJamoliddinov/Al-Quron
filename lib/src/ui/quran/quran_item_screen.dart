@@ -3,11 +3,16 @@ import 'dart:io';
 import 'package:al_quran/src/dialog/bottom_dialog.dart';
 import 'package:al_quran/src/dialog/center_dilaog.dart';
 import 'package:al_quran/src/models/quran_item_model.dart';
+import 'package:al_quran/src/ui/quran/player_widget/control_buttons.dart';
+import 'package:al_quran/src/ui/quran/player_widget/player_widget.dart';
 import 'package:al_quran/src/utils/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:rxdart/rxdart.dart';
 
 class QuranItemScreen extends StatefulWidget {
   final String title;
@@ -20,9 +25,64 @@ class QuranItemScreen extends StatefulWidget {
   _QuranItemScreenState createState() => _QuranItemScreenState();
 }
 
-class _QuranItemScreenState extends State<QuranItemScreen> {
+class _QuranItemScreenState extends State<QuranItemScreen>
+    with WidgetsBindingObserver {
+  final _player = AudioPlayer();
   int _selectedIndex = -1;
   int timerTime = 15;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addObserver(this);
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.black,
+    ));
+    _init();
+  }
+
+  Future<void> _init() async {
+    _player.playbackEventStream.listen((event) {},
+        onError: (Object e, StackTrace stackTrace) {
+      print('A stream error occurred: $e');
+    });
+    try {
+      await _player.setAudioSource(
+        AudioSource.uri(
+          Uri.parse(
+              "https://s3.amazonaws.com/scifri-episodes/scifri20181123-episode.mp3"),
+        ),
+      );
+    } catch (e) {
+      print("Error loading audio source: $e");
+    }
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance?.removeObserver(this);
+    _player.dispose();
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.paused) {
+      _player.stop();
+    }
+  }
+
+  Stream<PositionData> get _positionDataStream =>
+      Rx.combineLatest3<Duration, Duration, Duration?, PositionData>(
+        _player.positionStream,
+        _player.bufferedPositionStream,
+        _player.durationStream,
+        (position, bufferedPosition, duration) => PositionData(
+          position,
+          bufferedPosition,
+          duration ?? Duration.zero,
+        ),
+      );
 
   List<QuranItemModel> data = [
     QuranItemModel(
@@ -455,7 +515,7 @@ class _QuranItemScreenState extends State<QuranItemScreen> {
                     ),
                   ),
                   Container(
-                    height: Platform.isIOS ? 186 : 162,
+                    height: Platform.isIOS ? 186 : 174,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(8),
@@ -496,6 +556,8 @@ class _QuranItemScreenState extends State<QuranItemScreen> {
                         Container(
                           height: 58,
                           child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               SizedBox(width: 19),
                               GestureDetector(
@@ -510,15 +572,16 @@ class _QuranItemScreenState extends State<QuranItemScreen> {
                                   );
                                 },
                                 child: Container(
-                                  height: 30,
-                                  width: 30,
+                                  height: 28,
+                                  width: 28,
+                                  margin: EdgeInsets.only(top: 6),
                                   color: Colors.transparent,
                                   child: Stack(
                                     children: [
                                       SvgPicture.asset(
                                         "assets/icons/player_timer.svg",
-                                        height: 24,
-                                        width: 24,
+                                        height: 22,
+                                        width: 22,
                                       ),
                                       Align(
                                         alignment: Alignment.bottomRight,
@@ -548,7 +611,11 @@ class _QuranItemScreenState extends State<QuranItemScreen> {
                                   ),
                                 ),
                               ),
-                              Expanded(child: Container()),
+                              Expanded(
+                                child: Center(
+                                  child: ControlButtons(_player),
+                                ),
+                              ),
                               GestureDetector(
                                 onTap: () {
                                   BottomDialog.showRecitationDialog(context);
@@ -560,6 +627,62 @@ class _QuranItemScreenState extends State<QuranItemScreen> {
                               SizedBox(width: 19),
                             ],
                           ),
+                        ),
+                        StreamBuilder<PositionData>(
+                          stream: _positionDataStream,
+                          builder: (context, snapshot) {
+                            final positionData = snapshot.data;
+                            return SeekBar(
+                              duration: positionData?.duration ?? Duration.zero,
+                              position: positionData?.position ?? Duration.zero,
+                              bufferedPosition:
+                                  positionData?.bufferedPosition ??
+                                      Duration.zero,
+                              onChangeEnd: _player.seek,
+                            );
+                          },
+                        ),
+                        SizedBox(height: 12),
+                        Row(
+                          children: [
+                            SizedBox(width: 19),
+                            GestureDetector(
+                              onTap: () {},
+                              child: SvgPicture.asset(
+                                "assets/icons/player_share.svg",
+                              ),
+                            ),
+                            SizedBox(width: 4),
+                            Expanded(
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Mishary Rashid",
+                                    style: TextStyle(
+                                      fontFamily: AppTheme.fontPoppins,
+                                      fontSize: 16,
+                                      color: Color(0xFF767676),
+                                    ),
+                                  ),
+                                  SizedBox(width: 8),
+                                  Icon(
+                                    Icons.arrow_drop_up,
+                                    color: Color(0xFF767676),
+                                  )
+                                ],
+                              ),
+                            ),
+                            SizedBox(width: 4),
+                            GestureDetector(
+                              onTap: () {},
+                              child: SvgPicture.asset(
+                                "assets/icons/player_settings.svg",
+                              ),
+                            ),
+                            SizedBox(width: 19),
+                          ],
                         )
                       ],
                     ),
