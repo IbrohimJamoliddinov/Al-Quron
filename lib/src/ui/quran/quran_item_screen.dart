@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:al_quran/src/dialog/bottom_dialog.dart';
 import 'package:al_quran/src/dialog/center_dilaog.dart';
 import 'package:al_quran/src/models/quran_item_model.dart';
@@ -453,7 +455,7 @@ class _QuranItemScreenState extends State<QuranItemScreen> {
                     ),
                   ),
                   Container(
-                    height: 186,
+                    height: Platform.isIOS ? 186 : 162,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(8),
@@ -548,7 +550,9 @@ class _QuranItemScreenState extends State<QuranItemScreen> {
                               ),
                               Expanded(child: Container()),
                               GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  BottomDialog.showRecitationDialog(context);
+                                },
                                 child: SvgPicture.asset(
                                   "assets/icons/player_repeat.svg",
                                 ),

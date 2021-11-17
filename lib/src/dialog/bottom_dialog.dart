@@ -240,9 +240,7 @@ class BottomDialog {
                           ),
                         ),
                         GestureDetector(
-                          onTap: () {
-                            showSettingLanguage(context);
-                          },
+                          onTap: () {},
                           child: Container(
                             width: MediaQuery.of(context).size.width - 48,
                             margin: EdgeInsets.only(
@@ -751,10 +749,8 @@ class BottomDialog {
 
   static void showRecitationDialog(BuildContext context) {
     double _currentSliderValue = 50;
-    bool statusOne = true;
-    bool statusTwo = true;
-    bool statusThr = true;
-    bool statusFou = true;
+    bool autoScroll = true;
+    bool keepGoing = true;
     CupertinoScaffold.showCupertinoModalBottomSheet(
       expand: true,
       context: context,
@@ -775,7 +771,7 @@ class BottomDialog {
                         ),
                         Expanded(
                           child: Text(
-                            "Quran setting",
+                            "Recitation setting",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 18,
@@ -808,145 +804,50 @@ class BottomDialog {
                             horizontal: 16,
                             vertical: 8,
                           ),
-                          status: statusOne,
+                          status: autoScroll,
                           boxBorderRadius: BorderRadius.circular(12),
                           marginBox: EdgeInsets.symmetric(horizontal: 24),
                           boxColor: Color(0xFFD2D2D2),
-                          text: "Tajweed",
+                          text: "Auto scroll",
                           selected: (bool selected) {
                             setState(() {
-                              statusOne = selected;
+                              autoScroll = selected;
                             });
                           },
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: 260,
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 24, vertical: 6),
-                              child: Text(
-                                "Tajweed rules will appear on ayahs of surahs while using it",
-                                maxLines: 2,
-                                style: TextStyle(
-                                  color: AppTheme.textColorGrey,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        TextSwitch(
-                          paddingBox: EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 8,
+                        Container(
+                          margin: EdgeInsets.symmetric(
+                            horizontal: 24,
+                            vertical: 6,
                           ),
-                          status: statusTwo,
-                          boxBorderRadius: BorderRadius.circular(12),
-                          marginBox:
-                          EdgeInsets.only(left: 24, right: 24, top: 16),
-                          boxColor: Color(0xFFD2D2D2),
-                          text: "Tajweed panel",
-                          selected: (bool selected) {
-                            setState(() {
-                              statusTwo = selected;
-                            });
-                          },
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width - 48,
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 24, vertical: 6),
-                              child: Text(
-                                  "Tajweed rules guide will appear on fixed panel",
-                                  maxLines: 2,
-                                  style: TextStyle(
-                                    color: AppTheme.textColorGrey,
-                                  )),
+                          child: Text(
+                            "Tajweed rules will appear on ayahs of surahs while using it",
+                            style: TextStyle(
+                              color: AppTheme.textColorGrey,
                             ),
-                          ],
+                          ),
                         ),
                         Container(
                           height: 1,
-                          width: MediaQuery.of(context).size.width - 48,
-                          margin: EdgeInsets.only(left: 24, right: 24, top: 16),
+                          margin: EdgeInsets.only(left: 24, right: 24, top: 10),
                           color: Color(0xFFDBDBDB),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextSwitch(
-                          paddingBox: EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 8,
-                          ),
-                          status: statusThr,
-                          boxBorderRadius: BorderRadius.circular(12),
-                          marginBox: EdgeInsets.symmetric(horizontal: 24),
-                          boxColor: Color(0xFFD2D2D2),
-                          text: "Next and prev ayah by ayah",
-                          selected: (bool selected) {
-                            setState(() {
-                              statusThr = selected;
-                            });
-                          },
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: 260,
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 24, vertical: 6),
-                              child: Text(
-                                  "When next or previous button pressed it will go ayah by ayah",
-                                  maxLines: 2,
-                                  style: TextStyle(
-                                    color: AppTheme.textColorGrey,
-                                  )),
-                            ),
-                          ],
-                        ),
-                        TextSwitch(
-                          paddingBox: EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 8,
-                          ),
-                          status: statusFou,
-                          boxBorderRadius: BorderRadius.circular(12),
-                          marginBox:
-                          EdgeInsets.only(left: 24, right: 24, top: 16),
-                          boxColor: Color(0xFFD2D2D2),
-                          text: "Stop end of the surah",
-                          selected: (bool selected) {
-                            setState(() {
-                              statusFou = selected;
-                            });
-                          },
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width - 48,
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 24, vertical: 6),
-                              child: Text("When surah ends track stops also",
-                                  maxLines: 2,
-                                  style: TextStyle(
-                                    color: AppTheme.textColorGrey,
-                                  )),
-                            ),
-                          ],
                         ),
                         Container(
-                          height: 1,
-                          width: MediaQuery.of(context).size.width - 48,
-                          margin: EdgeInsets.only(left: 24, right: 24, top: 16),
-                          color: Color(0xFFDBDBDB),
+                          margin: EdgeInsets.only(
+                            left: 24,
+                            right: 24,
+                            top: 20,
+                            bottom: 6,
+                          ),
+                          child: Text(
+                            "Speed",
+                            style: TextStyle(
+                              fontFamily: AppTheme.fontPoppins,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16,
+                              color: Color(0xFF717171),
+                            ),
+                          ),
                         ),
                         Container(
                           margin: EdgeInsets.symmetric(horizontal: 24),
@@ -964,14 +865,15 @@ class BottomDialog {
                               thumbShape: RoundSliderThumbShape(
                                   enabledThumbRadius: 12.0),
                               overlayColor: Color(0xFF4CD42A).withAlpha(32),
-                              overlayShape:
-                              RoundSliderOverlayShape(overlayRadius: 28.0),
+                              overlayShape: RoundSliderOverlayShape(
+                                overlayRadius: 28.0,
+                              ),
                             ),
                             child: Slider(
                               value: _currentSliderValue,
                               min: 0,
                               max: 100,
-                              divisions: 7,
+                              divisions: 10,
                               label: _currentSliderValue.round().toString(),
                               onChanged: (double value) {
                                 setState(() {
@@ -981,40 +883,209 @@ class BottomDialog {
                             ),
                           ),
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            showSettingLanguage(context);
-                          },
-                          child: Container(
-                            width: MediaQuery.of(context).size.width - 48,
-                            margin: EdgeInsets.only(
-                                left: 24, right: 24, top: 14, bottom: 16),
-                            decoration: BoxDecoration(
-                              color: Color(0xFFDFDFDF),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            padding: EdgeInsets.only(left: 18, bottom: 12),
-                            child: Column(
-                              children: [
-                                SizedBox(height: 68),
-                                Row(
-                                  children: [
-                                    Text(
-                                      "Mehribon va rahmli Alloh nomi ila boshlayman",
-                                      maxLines: 2,
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
-                                        letterSpacing: 0.2,
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              ],
+                        Container(
+                          height: 1,
+                          margin: EdgeInsets.only(left: 24, right: 24, top: 20),
+                          color: Color(0xFFDBDBDB),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(
+                            left: 24,
+                            right: 24,
+                            top: 20,
+                            bottom: 6,
+                          ),
+                          child: Text(
+                            "Range of ayah",
+                            style: TextStyle(
+                              fontFamily: AppTheme.fontPoppins,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16,
+                              color: Color(0xFF4E4E4E),
                             ),
                           ),
-                        )
+                        ),
+                        Container(
+                          height: 48,
+                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          margin: EdgeInsets.symmetric(horizontal: 24),
+                          decoration: BoxDecoration(
+                            color: Color(0xFFF0F0F0),
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(
+                              color: Color(0xFFE1E1E1),
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: TextField(
+                                  autofocus: false,
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    focusedBorder: InputBorder.none,
+                                    enabledBorder: InputBorder.none,
+                                    errorBorder: InputBorder.none,
+                                    disabledBorder: InputBorder.none,
+                                    hintText: "Enter starting verse of ayah",
+                                    hintStyle: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 16,
+                                      letterSpacing: -0.41,
+                                      color: Color(0xFFA9A9A9),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.symmetric(
+                                  vertical: 5,
+                                  horizontal: 16,
+                                ),
+                                width: 1,
+                                color: Color(0xFFDBDBDB),
+                              ),
+                              SvgPicture.asset("assets/icons/flag.svg"),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 8),
+                        Container(
+                          height: 48,
+                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          margin: EdgeInsets.symmetric(horizontal: 24),
+                          decoration: BoxDecoration(
+                            color: Color(0xFFF0F0F0),
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(
+                              color: Color(0xFFE1E1E1),
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: TextField(
+                                  autofocus: false,
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    focusedBorder: InputBorder.none,
+                                    enabledBorder: InputBorder.none,
+                                    errorBorder: InputBorder.none,
+                                    disabledBorder: InputBorder.none,
+                                    hintText: "Enter ending verse of ayah",
+                                    hintStyle: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 16,
+                                      letterSpacing: -0.41,
+                                      color: Color(0xFFA9A9A9),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.symmetric(
+                                  vertical: 5,
+                                  horizontal: 16,
+                                ),
+                                width: 1,
+                                color: Color(0xFFDBDBDB),
+                              ),
+                              SvgPicture.asset("assets/icons/remove_flag.svg"),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(
+                            left: 24,
+                            right: 24,
+                            top: 20,
+                            bottom: 6,
+                          ),
+                          child: Text(
+                            "Repeatation of each ayah",
+                            style: TextStyle(
+                              fontFamily: AppTheme.fontPoppins,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16,
+                              color: Color(0xFF4E4E4E),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          height: 48,
+                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          margin: EdgeInsets.symmetric(horizontal: 24),
+                          decoration: BoxDecoration(
+                            color: Color(0xFFF0F0F0),
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(
+                              color: Color(0xFFE1E1E1),
+                            ),
+                          ),
+                          child: TextField(
+                            autofocus: false,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              focusedBorder: InputBorder.none,
+                              enabledBorder: InputBorder.none,
+                              errorBorder: InputBorder.none,
+                              disabledBorder: InputBorder.none,
+                              hintText: "Enter number of repeatations",
+                              hintStyle: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 16,
+                                letterSpacing: -0.41,
+                                color: Color(0xFFA9A9A9),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(
+                            horizontal: 24,
+                            vertical: 6,
+                          ),
+                          child: Text(
+                            "Here you enter number of tepeatation that repeat repeat rang of ayahs",
+                            style: TextStyle(
+                              color: AppTheme.textColorGrey,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          height: 1,
+                          margin: EdgeInsets.only(left: 24, right: 24, top: 16),
+                          color: Color(0xFFDBDBDB),
+                        ),
+                        TextSwitch(
+                          paddingBox: EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 8,
+                          ),
+                          status: keepGoing,
+                          boxBorderRadius: BorderRadius.circular(12),
+                          marginBox: EdgeInsets.symmetric(horizontal: 24),
+                          boxColor: Color(0xFFD2D2D2),
+                          text: "Keep going",
+                          selected: (bool selected) {
+                            setState(() {
+                              keepGoing = selected;
+                            });
+                          },
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(
+                            horizontal: 24,
+                            vertical: 6,
+                          ),
+                          child: Text(
+                            "Keep with same settings to the next range of the ayahs",
+                            style: TextStyle(
+                              color: AppTheme.textColorGrey,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 18),
                       ],
                     ),
                   ),
