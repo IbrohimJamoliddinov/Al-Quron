@@ -21,6 +21,20 @@ class _NamesScreenState extends State<NamesScreen> {
     NamesModel(names: "Ar-Mu'min"),
     NamesModel(names: "Ar-Muhaymin"),
     NamesModel(names: "Ar-’Aziz"),
+    NamesModel(names: "Ar-’Aziz"),
+    NamesModel(names: "Ar-’Aziz"),
+    NamesModel(names: "Ar-’Aziz"),
+    NamesModel(names: "Ar-’Aziz"),
+    NamesModel(names: "Ar-’Aziz"),
+    NamesModel(names: "Ar-’Aziz"),
+    NamesModel(names: "Ar-’Aziz"),
+    NamesModel(names: "Ar-’Aziz"),
+    NamesModel(names: "Ar-’Aziz"),
+    NamesModel(names: "Ar-’Aziz"),
+    NamesModel(names: "Ar-’Aziz"),
+    NamesModel(names: "Ar-’Aziz"),
+    NamesModel(names: "Ar-’Aziz"),
+    NamesModel(names: "Ar-’Aziz"),
   ];
 
   @override
@@ -28,36 +42,40 @@ class _NamesScreenState extends State<NamesScreen> {
     return Scaffold(
       backgroundColor: Color(0xFFECECEC),
       appBar: AppBar(
-        leadingWidth: 125,
+        leadingWidth: 98,
         backgroundColor: Color(0xFFDCDCDC),
         elevation: 0,
+        centerTitle: true,
         leading: GestureDetector(
           onTap: () {
             Navigator.pop(context);
           },
-          child: Row(
-            children: [
-              SizedBox(
-                width: 16,
-              ),
-              Icon(
-                Icons.arrow_back_ios,
-                color: Color(0xFF3A3A3C),
-              ),
-              Text(
-                "Back",
-                style: TextStyle(
-                  color: Color(0xFF3A3A3C),
-                  fontWeight: FontWeight.w400,
-                  fontSize: 16,
-                  letterSpacing: -0.41,
+          child: Container(
+            child: Row(
+              children: [
+                SizedBox(
+                  width: 16,
                 ),
-              ),
-            ],
+                SvgPicture.asset(
+                  "assets/icons/arrow_left_bold.svg",
+                  height: 18,
+                ),
+                SizedBox(width: 5),
+                Text(
+                  "Back",
+                  style: TextStyle(
+                    color: Color(0xFF3A3A3C),
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16,
+                    letterSpacing: -0.41,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         title: Text(
-          "Quran",
+          "99 Names",
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 18,
@@ -66,19 +84,20 @@ class _NamesScreenState extends State<NamesScreen> {
           ),
         ),
       ),
-      body: ListView(
+      body: Column(
         children: [
           CarouselSlider(
             options: CarouselOptions(
               height: 220.0,
-              viewportFraction: 0.94
+              viewportFraction: 0.94,
             ),
             items: [1, 2, 3].map((i) {
               return Builder(
                 builder: (BuildContext context) {
                   return Container(
                     alignment: Alignment.topRight,
-                    margin: EdgeInsets.only(top: 20, bottom: 20, left: 12, right: 12),
+                    margin: EdgeInsets.only(
+                        top: 20, bottom: 20, left: 12, right: 12),
                     height: 178,
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
@@ -103,75 +122,76 @@ class _NamesScreenState extends State<NamesScreen> {
               );
             }).toList(),
           ),
-          Container(
-            width: MediaQuery.of(context).size.width - 48,
-            margin: EdgeInsets.symmetric(horizontal: 24),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
+          Expanded(
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 24),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: ListView.builder(
+                  itemCount: dataName.length,
+                  itemBuilder: (context, index) {
+                    return Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 12),
+                          child: Text(
+                            (index + 1).toString(),
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 12,
+                              fontFamily: AppTheme.fontPoppins,
+                              letterSpacing: 0.16,
+                              color: Color(0xFF989898),
+                            ),
+                          ),
+                          width: 15,
+                        ),
+                        Expanded(
+                          child: Container(
+                            height: 64,
+                            padding: EdgeInsets.only(right: 8),
+                            decoration: BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: index + 1 == dataName.length
+                                      ? Colors.white
+                                      : Color(0xFFDBDBDB),
+                                  width: 1,
+                                ),
+                              ),
+                            ),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    dataName[index].names,
+                                    style: TextStyle(
+                                      color: Color(0xFF3D3D3D),
+                                      fontFamily: AppTheme.fontPoppins,
+                                      fontSize: 18,
+                                      letterSpacing: 0.2,
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  width: 104,
+                                  height: 44,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFB5B5B5),
+                                    borderRadius: BorderRadius.circular(6),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  }),
             ),
-            child: ListView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: dataName.length,
-                itemBuilder: (context, index) {
-                  return Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.symmetric(horizontal: 12),
-                        child: Text(
-                          (index + 1).toString(),
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 12,
-                            fontFamily: AppTheme.fontPoppins,
-                            letterSpacing: 0.16,
-                            color: Color(0xFF989898),
-                          ),
-                        ),
-                        width: 12,
-                      ),
-                      Container(
-                        height: 64,
-                        width: MediaQuery.of(context).size.width - 86,
-                        padding: EdgeInsets.only(right: 12),
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                              color: index + 1 == dataName.length
-                                  ? Colors.white
-                                  : Color(0xFFDBDBDB),
-                              width: 1,
-                            ),
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            Text(
-                              dataName[index].names,
-                              style: TextStyle(
-                                color: Color(0xFF3D3D3D),
-                                fontFamily: AppTheme.fontPoppins,
-                                fontSize: 18,
-                                letterSpacing: 0.2,
-                              ),
-                            ),
-                            Spacer(),
-                            Container(
-                              width: 104,
-                              height: 44,
-                              decoration: BoxDecoration(
-                                color: Color(0xFFB5B5B5),
-                                borderRadius: BorderRadius.circular(6),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  );
-                }),
           ),
         ],
       ),

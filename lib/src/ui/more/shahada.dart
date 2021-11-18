@@ -1,5 +1,6 @@
 import 'package:al_quran/src/utils/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class ShahadaScreen extends StatefulWidget {
   @override
@@ -10,34 +11,38 @@ class _ShahadaScreenState extends State<ShahadaScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFE5E5E5),
+      backgroundColor: AppTheme.white,
       appBar: AppBar(
-        leadingWidth: 125,
+        leadingWidth: 98,
         backgroundColor: Color(0xFFDCDCDC),
         elevation: 0,
+        centerTitle: true,
         leading: GestureDetector(
           onTap: () {
             Navigator.pop(context);
           },
-          child: Row(
-            children: [
-              SizedBox(
-                width: 16,
-              ),
-              Icon(
-                Icons.arrow_back_ios,
-                color: Color(0xFF3A3A3C),
-              ),
-              Text(
-                "Back",
-                style: TextStyle(
-                  color: Color(0xFF3A3A3C),
-                  fontWeight: FontWeight.w400,
-                  fontSize: 16,
-                  letterSpacing: -0.41,
+          child: Container(
+            child: Row(
+              children: [
+                SizedBox(
+                  width: 16,
                 ),
-              ),
-            ],
+                SvgPicture.asset(
+                  "assets/icons/arrow_left_bold.svg",
+                  height: 18,
+                ),
+                SizedBox(width: 5),
+                Text(
+                  "Back",
+                  style: TextStyle(
+                    color: Color(0xFF3A3A3C),
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16,
+                    letterSpacing: -0.41,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         title: Text(
@@ -63,7 +68,7 @@ class _ShahadaScreenState extends State<ShahadaScreen> {
             width: MediaQuery.of(context).size.width - 48,
             margin: EdgeInsets.only(left: 24, right: 24),
             decoration: BoxDecoration(
-              color: Color(0xFFF1F1F1),
+              color: Color(0xFFEAEAEA),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Column(
@@ -90,7 +95,7 @@ class _ShahadaScreenState extends State<ShahadaScreen> {
             width: MediaQuery.of(context).size.width - 48,
             margin: EdgeInsets.only(left: 24, right: 24, top: 16),
             decoration: BoxDecoration(
-              color: Color(0xFFF1F1F1),
+              color: Color(0xFFEAEAEA),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Column(
@@ -111,7 +116,6 @@ class _ShahadaScreenState extends State<ShahadaScreen> {
               ],
             ),
           ),
-
         ],
       ),
     );
