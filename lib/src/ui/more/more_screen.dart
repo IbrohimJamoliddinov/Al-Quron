@@ -1,13 +1,14 @@
-import 'package:al_quran/src/ui/more/qiblah/qiblah_compass_screen.dart';
-import 'package:al_quran/src/ui/more/shahada.dart';
-import 'package:al_quran/src/ui/more/youtube_screen.dart';
+import 'package:al_quran/src/ui/more/sub_more/donate_screen.dart';
+import 'package:al_quran/src/ui/more/sub_more/qiblah/qiblah_compass_screen.dart';
+import 'package:al_quran/src/ui/more/sub_more/shahada_screen.dart';
+import 'package:al_quran/src/ui/more/sub_more/youtube_screen.dart';
 import 'package:al_quran/src/widgets/menu_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
-import 'names99.dart';
+import 'sub_more/names_screen.dart';
 
 class MoreScreen extends StatefulWidget {
   @override
@@ -180,24 +181,49 @@ class _MoreScreenState extends State<MoreScreen> {
                       ),
                     ],
                   ),
-                  MenuWidget(
-                    name: "Donate",
-                    widthBox: MediaQuery.of(context).size.width - 48,
-                    heightBox: 120,
-                    marginBox: EdgeInsets.symmetric(vertical: 16),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) {
+                            return DonateScreen();
+                          },
+                        ),
+                      );
+                    },
+                    child: MenuWidget(
+                      name: "Donate",
+                      widthBox: MediaQuery.of(context).size.width - 48,
+                      heightBox: 120,
+                      marginBox: EdgeInsets.symmetric(vertical: 16),
+                    ),
                   ),
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      MenuWidget(
-                        name: "Your Donation",
-                        widthBox: (MediaQuery.of(context).size.width - 66) / 2,
-                        heightBox: 150,
+                      Column(
+                        children: [
+                          MenuWidget(
+                            name: "Your Donation",
+                            widthBox:
+                                (MediaQuery.of(context).size.width - 66) / 2,
+                            heightBox: 150,
+                          ),
+                          SizedBox(height: 16),
+                          MenuWidget(
+                            name: "Contact Us",
+                            widthBox:
+                                (MediaQuery.of(context).size.width - 66) / 2,
+                            heightBox: 150,
+                          ),
+                        ],
                       ),
                       MenuWidget(
                         name: "Islamic Calendar",
                         widthBox: (MediaQuery.of(context).size.width - 66) / 2,
-                        heightBox: 150,
+                        heightBox: 250,
                       ),
                     ],
                   ),
