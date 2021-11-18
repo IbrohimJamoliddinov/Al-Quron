@@ -1,4 +1,3 @@
-import 'package:al_quran/src/dialog/bottom_dialog.dart';
 import 'package:al_quran/src/ui/more/qiblah/qiblah_compass_screen.dart';
 import 'package:al_quran/src/ui/more/shahada.dart';
 import 'package:al_quran/src/ui/more/youtube_screen.dart';
@@ -37,9 +36,7 @@ class _MoreScreenState extends State<MoreScreen> {
                 ),
                 actions: [
                   GestureDetector(
-                    onTap: () {
-
-                    },
+                    onTap: () {},
                     child: Container(
                       margin: EdgeInsets.only(right: 16),
                       child: SvgPicture.asset(

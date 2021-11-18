@@ -739,7 +739,6 @@ class BottomDialog {
                                       : Container()
                                 ],
                               );
-                              ;
                             },
                           ),
                         ),
@@ -1459,7 +1458,6 @@ class BottomDialog {
                                       : Container()
                                 ],
                               );
-                              ;
                             },
                           ),
                         ),

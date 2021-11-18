@@ -1,7 +1,10 @@
 import 'package:al_quran/src/models/letters_model.dart';
 import 'package:al_quran/src/utils/app_theme.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
+import 'letter_alif_screen.dart';
 
 class AlphabitScreen extends StatefulWidget {
   @override
@@ -215,72 +218,84 @@ class _AlphabitScreenState extends State<AlphabitScreen> {
                     ),
                   );
                 }
-                return Container(
-                  margin: EdgeInsets.only(top: 16, left: 22, right: 22),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 14,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Color(0xFFDCDCDC),
-                  ),
-                  height: 90,
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 61,
-                        height: 61,
-                        decoration: BoxDecoration(
-                          color: Color(0xFFA1A1A1),
-                          borderRadius: BorderRadius.circular(11),
+                return GestureDetector(
+                  onTap: (){
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (context) {
+                          return LetterAlifScreen();
+                        },
+                      ),
+                    );
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(top: 16, left: 22, right: 22),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 14,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Color(0xFFDCDCDC),
+                    ),
+                    height: 90,
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 61,
+                          height: 61,
+                          decoration: BoxDecoration(
+                            color: Color(0xFFA1A1A1),
+                            borderRadius: BorderRadius.circular(11),
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 18,
-                      ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              letters[index].name,
-                              style: TextStyle(
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 17,
-                                height: 1.18,
-                                letterSpacing: 0.2,
-                                color: AppTheme.black,
+                        SizedBox(
+                          width: 18,
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                letters[index].name,
+                                style: TextStyle(
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 17,
+                                  height: 1.18,
+                                  letterSpacing: 0.2,
+                                  color: AppTheme.black,
+                                ),
                               ),
-                            ),
-                            SizedBox(height: 4),
-                            Text(
-                              letters[index].part +
-                                  " / " +
-                                  letters[index].exercise,
-                              style: TextStyle(
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 15,
-                                letterSpacing: 0.2,
-                                color: Color(0xFF939393),
+                              SizedBox(height: 4),
+                              Text(
+                                letters[index].part +
+                                    " / " +
+                                    letters[index].exercise,
+                                style: TextStyle(
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 15,
+                                  letterSpacing: 0.2,
+                                  color: Color(0xFF939393),
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                      Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Color(0xFFA1A1A1),
+                        Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Color(0xFFA1A1A1),
+                          ),
                         ),
-                      ),
-                      SizedBox(width: 10),
-                    ],
+                        SizedBox(width: 10),
+                      ],
+                    ),
                   ),
                 );
               },

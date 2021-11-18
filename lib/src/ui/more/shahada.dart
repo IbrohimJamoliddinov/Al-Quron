@@ -1,6 +1,5 @@
 import 'package:al_quran/src/utils/app_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class ShahadaScreen extends StatefulWidget {
   @override
