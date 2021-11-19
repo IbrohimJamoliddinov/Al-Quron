@@ -1,4 +1,5 @@
 import 'package:al_quran/src/ui/more/sub_more/donate_screen.dart';
+import 'package:al_quran/src/ui/more/sub_more/hijr_calendar_screen.dart';
 import 'package:al_quran/src/ui/more/sub_more/qiblah/qiblah_compass_screen.dart';
 import 'package:al_quran/src/ui/more/sub_more/shahada_screen.dart';
 import 'package:al_quran/src/ui/more/sub_more/youtube_screen.dart';
@@ -220,10 +221,23 @@ class _MoreScreenState extends State<MoreScreen> {
                           ),
                         ],
                       ),
-                      MenuWidget(
-                        name: "Islamic Calendar",
-                        widthBox: (MediaQuery.of(context).size.width - 66) / 2,
-                        heightBox: 250,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            CupertinoPageRoute(
+                              builder: (context) {
+                                return HijrCalendarScreen();
+                              },
+                            ),
+                          );
+                        },
+                        child: MenuWidget(
+                          name: "Islamic Calendar",
+                          widthBox:
+                              (MediaQuery.of(context).size.width - 66) / 2,
+                          heightBox: 250,
+                        ),
                       ),
                     ],
                   ),
