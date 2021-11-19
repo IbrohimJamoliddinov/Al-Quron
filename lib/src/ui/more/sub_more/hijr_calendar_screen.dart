@@ -22,6 +22,17 @@ class _HijrCalendarScreenState extends State<HijrCalendarScreen> {
         backgroundColor: Color(0xFFDCDCDC),
         elevation: 0,
         centerTitle: true,
+        actions: [
+          GestureDetector(
+            onTap: () {},
+            child: Container(
+              margin: EdgeInsets.only(right: 16),
+              child: SvgPicture.asset(
+                "assets/icons/calendar.svg",
+              ),
+            ),
+          )
+        ],
         leading: GestureDetector(
           onTap: () {
             Navigator.pop(context);

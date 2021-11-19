@@ -3,6 +3,7 @@ library hijri_picker;
 import 'dart:async';
 import 'dart:math' as math;
 
+import 'package:al_quran/src/utils/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/semantics.dart';
@@ -283,13 +284,27 @@ class HijriDayPicker extends StatelessWidget {
   final SelectableDayPredicate? selectableDayPredicate;
 
   List<Widget> _getDayHeaders(
-      TextStyle? headerStyle, MaterialLocalizations localizations) {
+    TextStyle? headerStyle,
+    MaterialLocalizations localizations,
+  ) {
     final List<Widget> result = <Widget>[];
     for (int i = 0; true; i = (i + 1) % 7) {
       final String weekday = localizations.narrowWeekdays[i];
-      result.add(new ExcludeSemantics(
-        child: new Center(child: new Text(weekday, style: headerStyle)),
-      ));
+      result.add(
+        new ExcludeSemantics(
+          child: new Center(
+            child: new Text(
+              weekday,
+              style: TextStyle(
+                fontFamily: AppTheme.fontPoppins,
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+                height: 1.6,
+              ),
+            ),
+          ),
+        ),
+      );
       if (i == (0 - 1) % 7) break;
     }
     return result;
@@ -350,13 +365,19 @@ class HijriDayPicker extends StatelessWidget {
             shape: BoxShape.circle,
           );
         } else if (disabled) {
-          itemStyle = themeData.textTheme.bodyText2
-              ?.copyWith(color: themeData.disabledColor);
+          itemStyle = themeData.textTheme.bodyText1?.copyWith(
+            color: Color(0xFF19181A),
+          );
         } else if (currentDate.hYear == year &&
             currentDate.hMonth == month &&
             currentDate.hDay == day) {
-          itemStyle = themeData.textTheme.bodyText1
-              ?.copyWith(color: themeData.accentColor);
+          itemStyle = themeData.textTheme.bodyText1?.copyWith(
+            color: Color(0xFF19181A),
+          );
+          decoration = new BoxDecoration(
+            color: Color(0xFFF8F7FA),
+            shape: BoxShape.circle,
+          );
         }
 
         Widget dayWidget = new Container(
@@ -367,8 +388,10 @@ class HijriDayPicker extends StatelessWidget {
                   '${localizations.formatDecimal(day)}, ${dayToBuild.toString()}',
               selected: isSelectedDay,
               child: new ExcludeSemantics(
-                child: new Text(localizations.formatDecimal(day),
-                    style: itemStyle),
+                child: new Text(
+                  localizations.formatDecimal(day),
+                  style: itemStyle,
+                ),
               ),
             ),
           ),
