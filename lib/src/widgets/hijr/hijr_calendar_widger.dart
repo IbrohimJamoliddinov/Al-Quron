@@ -63,7 +63,6 @@ class HijriCalendar {
   }
 
   int _gMod(int n, int m) {
-    // generalized modulo function (n mod m) also valid for negative values of n
     return ((n % m) + m) % m;
   }
 
